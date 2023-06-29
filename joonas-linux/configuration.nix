@@ -166,6 +166,7 @@
     vlc
     vscode
     vulkan-tools
+    whatsapp-for-linux
     lutris
     (lutris.override {
           extraPkgs = pkgs: [
