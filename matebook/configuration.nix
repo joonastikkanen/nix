@@ -141,6 +141,12 @@
     extraGroups = [ "networkmanager" "wheel" "kvm" "input" "disk" "libvirtd" ];
   };
   
+  users.users.miia = {
+    isNormalUser = true;
+    description = "Miia Tikkanen";
+    extraGroups = [];
+  };
+
   virtualisation.libvirtd.enable = true; 
 
   programs.steam = {
