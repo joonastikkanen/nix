@@ -1,19 +1,27 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# and in the NixOS manual (accessible by running `nixos-help`).
 
 { config, pkgs, lib, ... }:
 
 {
-#  nix.nixPath = [ "nixos-config=$PWD/configuration.nix" ];
+  nix.nixPath = [ "nixos-config=$PWD/configuration.nix" ];
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
     ];
 
-  # Bootloader.
+  # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/538eba3e-06ca-4929-97ab-29b158bf615e";
+
+  fileSystems."/boot" =
+    { device = "/dev/disk/by-uuid/AB37-12BC";
+      fsType = "vfat";
+    };
+
+  swapDevices = [ ];
 
   networking = {
     hostName = "matebook";
@@ -26,25 +34,6 @@
     '';
   };
 
-  # Set your time zone.
-  time.timeZone = "Europe/Helsinki";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fi_FI.UTF-8";
-    LC_IDENTIFICATION = "fi_FI.UTF-8";
-    LC_MEASUREMENT = "fi_FI.UTF-8";
-    LC_MONETARY = "fi_FI.UTF-8";
-    LC_NAME = "fi_FI.UTF-8";
-    LC_NUMERIC = "fi_FI.UTF-8";
-    LC_PAPER = "fi_FI.UTF-8";
-    LC_TELEPHONE = "fi_FI.UTF-8";
-    LC_TIME = "fi_FI.UTF-8";
-  };
-
-  # Enable the X11 windowing system.
  services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
@@ -65,9 +54,23 @@
       ];
   };
 
+  # Set your time zone.
+  time.timeZone = "Europe/Helsinki";
 
-  # Configure console keymap
-  console.keyMap = "fi";
+  # Select internationalisation properties.
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  i18n.extraLocaleSettings = {
+    LC_ADDRESS = "fi_FI.UTF-8";
+    LC_IDENTIFICATION = "fi_FI.UTF-8";
+    LC_MEASUREMENT = "fi_FI.UTF-8";
+    LC_MONETARY = "fi_FI.UTF-8";
+    LC_NAME = "fi_FI.UTF-8";
+    LC_NUMERIC = "fi_FI.UTF-8";
+    LC_PAPER = "fi_FI.UTF-8";
+    LC_TELEPHONE = "fi_FI.UTF-8";
+    LC_TIME = "fi_FI.UTF-8";
+  };
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -104,7 +107,6 @@
     ];
 
   # Tell Xorg to use the nvidia driver
-  hardware.nvidia.modesetting.enable = true;
   services.xserver.videoDrivers = ["nvidia"];
 
   hardware.nvidia = {
@@ -146,8 +148,6 @@
     description = "Miia Tikkanen";
     extraGroups = [];
   };
-
-  virtualisation.libvirtd.enable = true; 
 
   programs.steam = {
     enable = true;
@@ -200,7 +200,6 @@
     telegram-desktop
     unzip
     vagrant
-    virt-manager
     vlc
     vscode
     vulkan-tools
@@ -214,6 +213,8 @@
           ];
         })
   ];
+
   system.stateVersion = "23.05"; # Did you read the comment?
 
 }
+
