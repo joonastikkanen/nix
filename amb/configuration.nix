@@ -5,7 +5,6 @@
 { config, pkgs, lib, ... }:
 
 {
-#  nix.nixPath = [ "nixos-config=$PWD/configuration.nix" ];
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -157,7 +156,6 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
    environment.systemPackages = with pkgs; [
@@ -190,6 +188,7 @@
     hugo
     hunspellDicts.sv_FI
     helm
+    hostctl
     marktext
     mysql-shell
     nfs-utils
@@ -214,6 +213,7 @@
     steam-run
     teams
     teamspeak_client
+    teeworlds
     telegram-desktop
     terraform
     tfswitch
@@ -236,6 +236,15 @@
           ];
         })
   ];
+# VERSION: https://lazamar.co.uk/nix-versions/?channel=nixpkgs-unstable&package=vmware-horizon-client
+  let
+      pkgs = import (builtins.fetchTarball {
+          url = "https://github.com/NixOS/nixpkgs/archive/8cad3dbe48029cb9def5cdb2409a6c80d3acfe2e.tar.gz";
+      }) {};
+
+      myPkg = pkgs.vmware-horizon-client;
+  in
+
   system.stateVersion = "23.05"; # Did you read the comment?
 
 }
