@@ -184,6 +184,7 @@
     gnomeExtensions.vitals
     gnomeExtensions.blur-my-shell
     gnomeExtensions.auto-move-windows
+    gnomeExtensions.one-drive-resurrect
     gparted
     hugo
     hunspellDicts.sv_FI
@@ -198,6 +199,7 @@
     kubectl
     libreoffice
     openssl
+    onedrive
     pavucontrol
     polkit_gnome
     podman
