@@ -5,7 +5,6 @@
 { config, pkgs, lib, ... }:
 
 {
-  nix.nixPath = [ "nixos-config=$PWD/configuration.nix" ];
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
@@ -20,6 +19,11 @@
       fsType = "ntfs-3g"; 
       options = [ "rw" "uid=1000" "gid=1000" ];
     };
+
+  fileSystems."/mnt/TIKINAS" = {
+    device = "10.20.30.20:/data";
+    fsType = "nfs";
+  };
 
   networking = {
     hostName = "joonas-linux";
@@ -172,6 +176,7 @@
     hugo
     hunspellDicts.sv_FI
     nfs-utils
+    ncdu
     libreoffice
     openssl
     pavucontrol
@@ -187,6 +192,7 @@
     teamspeak_client
     telegram-desktop
     unzip
+    unrar
     vagrant
     virt-manager
     vlc
@@ -202,6 +208,13 @@
           ];
         })
   ];
-  system.stateVersion = "23.05"; # Did you read the comment?
+
+  system = {
+    stateVersion = "23.11";
+    autoUpgrade = {
+      enable = true;
+      allowReboot = true;
+    };
+  };
 
 }
