@@ -71,9 +71,14 @@
     extraGroups = [ "wheel" "docker" ];
   };
 
-  services.openssh = {
-    enable = true;
-    settings.PermitRootLogin = "yes";
+  services = {
+    openssh = {
+      enable = true;
+      settings.PermitRootLogin = "yes";
+    };
+    tailscale = {
+      enable = true;
+    };
   };
   virtualisation.docker.enable = true;
   console.enable = true;
