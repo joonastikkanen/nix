@@ -149,11 +149,19 @@
     extraGroups = [];
   };
 
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
+
+  services.fprintd.enable = true;
+
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
     dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
   };
+  programs.bash.loginShellInit = "neofetch";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

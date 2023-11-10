@@ -139,6 +139,13 @@
     };
   };
 
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;
+  };
+
+  services.fprintd.enable = true;
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.joonas = {
     isNormalUser = true;

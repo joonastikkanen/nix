@@ -81,6 +81,7 @@
     };
   };
   virtualisation.docker.enable = true;
+  programs.bash.loginShellInit = "screenfetch";
   console.enable = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -97,6 +98,7 @@
     nfs-utils
     openssl
     samba
+    screenfetch
     unzip
     unrar
   ];
