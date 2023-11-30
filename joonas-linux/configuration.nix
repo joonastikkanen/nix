@@ -3,7 +3,12 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, ... }:
-
+let
+  unstable = import
+    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixos-unstable)
+    # reuse the current configuration
+    { config = config.nixpkgs.config; };
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -32,10 +37,11 @@
 
     extraHosts = ''
       10.20.30.20 tikinas
+      10.20.30.30 homeassistant
       10.20.30.40 tikiproxy
     '';
   };
-
+  systemd.services.NetworkManager-wait-online.enable = false;
   # Set your time zone.
   time.timeZone = "Europe/Helsinki";
 
@@ -55,7 +61,7 @@
   };
 
   # Enable the X11 windowing system.
- services.xserver = {
+  services.xserver = {
     enable = true;
     displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
@@ -74,7 +80,6 @@
         xterm
       ];
   };
-
 
   # Configure console keymap
   console.keyMap = "fi";
@@ -105,6 +110,7 @@
     enable = true;
     driSupport = true;
     driSupport32Bit = true;
+    extraPackages = [ pkgs.mesa.drivers ];
   };
 
   # NVIDIA drivers are unfree.
@@ -140,7 +146,8 @@
   };
   
   virtualisation.libvirtd.enable = true; 
-
+   
+  services.tailscale.enable = true;
   programs.steam = {
     enable = true;
     remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
@@ -149,22 +156,26 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-
+  nixpkgs.config.permittedInsecurePackages = [
+  	"electron-24.8.6"
+  ];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
    environment.systemPackages = with pkgs; [
     ansible
+    bitwarden
     curl
     vim
     wget
     neofetch
     discord
-    enpass
+    unstable.enpass
     flatpak
     freetype
     gcc
     gimp
     git
+    go
     google-chrome
     gnomeExtensions.appindicator
     gnomeExtensions.sound-output-device-chooser
@@ -177,6 +188,7 @@
     hunspellDicts.sv_FI
     nfs-utils
     ncdu
+    kid3
     libreoffice
     openssl
     pavucontrol
@@ -186,9 +198,11 @@
     podman-compose
     qemu
     samba
+    unstable.slack
     spotify
-    steam
+    unstable.steam
     steam-run
+    sweethome3d.application
     teamspeak_client
     telegram-desktop
     unzip
@@ -196,9 +210,9 @@
     vagrant
     virt-manager
     vlc
-    vscode
+    unstable.vscode
     vulkan-tools
-    whatsapp-for-linux
+    unstable.whatsapp-for-linux
     lutris
     (lutris.override {
           extraPkgs = pkgs: [
@@ -210,11 +224,12 @@
   ];
 
   system = {
-    stateVersion = "23.11";
+    stateVersion = "23.05";
     autoUpgrade = {
       enable = true;
-      allowReboot = true;
+      allowReboot = false;
     };
   };
 
 }
+

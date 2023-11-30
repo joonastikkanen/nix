@@ -140,6 +140,8 @@
     enable = true;
     setSocketVariable = true;
   };
+
+#  environment.loginShellInit = "screenfetch";
   console.enable = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -160,6 +162,7 @@
     python3
     sqlite
     samba
+    screenfetch
     tmux
     unzip
     unrar
