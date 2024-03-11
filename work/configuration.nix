@@ -4,6 +4,13 @@
 
 { config, pkgs, lib, ... }:
 
+let
+  unstable = import
+    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixos-unstable)
+    # reuse the current configuration
+    { config = config.nixpkgs.config; };
+in
+
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -14,22 +21,24 @@
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/38cac866-8673-44c9-95e2-370ac9f99f91";
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/xxx";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/1607-952B";
+    { device = "/dev/disk/by-uuid/xxx";
       fsType = "vfat";
     };
 
 
   networking = {
-    hostName = "ambwks757.ambientia.fi";
+    hostName = "kinetive";
     networkmanager.enable = true;
     firewall.enable = true;
 
     extraHosts = ''
       10.20.30.20 tikinas
       10.20.30.40 tikiproxy
+      10.20.30.50 homeassistant
+      10.20.30.60 watermeter
     '';
   };
 
@@ -70,7 +79,6 @@
     excludePackages = with pkgs; [
         xterm
       ];
-    videoDrivers = [ "nvidia" ];
   };
 
 
@@ -97,48 +105,6 @@
     #media-session.enable = true;
   };
 
-  # NVIDIA
-  # Make sure opengl is enabled
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-  };
-
-  # NVIDIA drivers are unfree.
-  nixpkgs.config.allowUnfreePredicate = pkg:
-    builtins.elem (lib.getName pkg) [
-      "nvidia-x11"
-    ];
-
-  # Tell Xorg to use the nvidia driver
-  services.xserver.videoDrivers = ["nvidia"];
-
-  hardware.nvidia = {
-
-    # Modesetting is needed for most wayland compositors
-    modesetting.enable = true;
-
-    # Use the open source version of the kernel module
-    # Only available on driver 515.43.04+
-    open = false;
-
-    # Enable the nvidia settings menu
-    nvidiaSettings = true;
-
-    # Optionally, you may need to select the appropriate driver version for your specific GPU.
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
-  };
-
   powerManagement = {
     enable = true;
     powertop.enable = true;
@@ -155,11 +121,7 @@
   
   virtualisation.libvirtd.enable = true; 
 
-  programs.steam = {
-    enable = true;
-    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
-  };
+  services.tailscale.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -168,7 +130,6 @@
    environment.systemPackages = with pkgs; [
     android-tools
     ansible
-    apache-directory-studio
     awscli2
     azure-cli
     curl
@@ -191,14 +152,11 @@
     gnomeExtensions.vitals
     gnomeExtensions.blur-my-shell
     gnomeExtensions.auto-move-windows
-    gnomeExtensions.one-drive-resurrect
     gparted
     hugo
     hunspellDicts.sv_FI
     helm
-    hostctl
     marktext
-    mysql-shell
     nfs-utils
     nodenv
     nodejs_18
@@ -206,7 +164,6 @@
     kubectl
     libreoffice
     openssl
-    onedrive
     pavucontrol
     polkit_gnome
     podman
@@ -217,43 +174,20 @@
     qemu
     samba
     spotify
-    slack
-    steam
-    steam-run
     teams
-    teamspeak_client
-    teeworlds
     telegram-desktop
     terraform
     tfswitch
-    thunderbird
     tmux
     unrar
     unzip
     vagrant
     virt-manager
     vlc
-    vscode
+    unstable.vscode
     vulkan-tools
     whatsapp-for-linux
-    lutris
-    (lutris.override {
-          extraPkgs = pkgs: [
-      # List package dependencies here
-            wineWowPackages.stable
-            winetricks
-          ];
-        })
-  ];
-# VERSION: https://lazamar.co.uk/nix-versions/?channel=nixpkgs-unstable&package=vmware-horizon-client
-  let
-      pkgs = import (builtins.fetchTarball {
-          url = "https://github.com/NixOS/nixpkgs/archive/8cad3dbe48029cb9def5cdb2409a6c80d3acfe2e.tar.gz";
-      }) {};
-
-      myPkg = pkgs.vmware-horizon-client;
-  in
-
-  system.stateVersion = "23.05"; # Did you read the comment?
+   ]
+  system.stateVersion = "23.11"; 
 
 }
