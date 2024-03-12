@@ -3,6 +3,10 @@
   imports =
     [
       #./hardware-configuration.nix
+      ../../modules/common.nix
+      ../../modules/locales.nix
+      ../../modules/ssh.nix
+      ../../modules/tailscale.nix
     ];
 
   boot = {
@@ -47,39 +51,12 @@
     '';
   };
 
-  # Set your time zone.
-  time.timeZone = "Europe/Helsinki";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fi_FI.UTF-8";
-    LC_IDENTIFICATION = "fi_FI.UTF-8";
-    LC_MEASUREMENT = "fi_FI.UTF-8";
-    LC_MONETARY = "fi_FI.UTF-8";
-    LC_NAME = "fi_FI.UTF-8";
-    LC_NUMERIC = "fi_FI.UTF-8";
-    LC_PAPER = "fi_FI.UTF-8";
-    LC_TELEPHONE = "fi_FI.UTF-8";
-    LC_TIME = "fi_FI.UTF-8";
-  };
-
   users.users.joonas = {
     isNormalUser = true;
     description = "Joonas Tikkanen";
     extraGroups = [ "wheel" "docker" ];
   };
 
-  services = {
-    openssh = {
-      enable = true;
-      settings.PermitRootLogin = "yes";
-    };
-    tailscale = {
-      enable = true;
-    };
-  };
   virtualisation.docker.enable = true;
   programs.bash.loginShellInit = "screenfetch";
   console.enable = true;
@@ -91,16 +68,10 @@
     ansible
     curl
     docker-compose
-    vim
-    wget
     neofetch
-    git
     nfs-utils
     openssl
     samba
-    screenfetch
-    unzip
-    unrar
   ];
 
   hardware.enableRedistributableFirmware = true;
