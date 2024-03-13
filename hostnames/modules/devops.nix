@@ -30,5 +30,5 @@ in
         kubectl
         remmina
         tfswitch
-    ]
+    ];
 }

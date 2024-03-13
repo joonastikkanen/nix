@@ -18,5 +18,5 @@
    environment.systemPackages = with pkgs; [
     nfs-utils
     samba
-   ]
+   ];
 }

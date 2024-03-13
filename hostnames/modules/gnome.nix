@@ -29,5 +29,5 @@
         gnomeExtensions.auto-move-windows
         polkit_gnome
         gparted
-    ]
+    ];
 }

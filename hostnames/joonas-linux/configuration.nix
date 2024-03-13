@@ -13,12 +13,12 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../modules/gnome.nix
-      ../../modules/locales.nix
-      ../../modules/sound.nix
-      ../../modules/nvidia.nix
-      ../../modules/networking.nix
-      ../../modules/tailscale.nix
+      ../modules/gnome.nix
+      ../modules/locales.nix
+      ../modules/sound.nix
+      ../modules/nvidia.nix
+      ../modules/networking.nix
+      ../modules/tailscale.nix
     ];
 
   # Bootloader.
