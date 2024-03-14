@@ -8,6 +8,7 @@
         git
         neofetch
         ncdu
+        nnn
         openssl
         tmux
         unzip
@@ -18,6 +19,11 @@
         jq
         yq
         git
+        tree
+        dnsutils
+        file
+        nmap
+        usbutils
     ];
     nix.settings = {
         experimental-features = "nix-command flakes";

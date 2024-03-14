@@ -1,5 +1,10 @@
 {...}: {
-  imports = [ ];
+  imports = [
+    ../modules/bash.nix
+    ../modules/firefox.nix
+    ../modules/ssh.nix
+    ../modules/tmux.nix
+   ];
 
   # nixpkgs configuration
   nixpkgs = {
@@ -11,7 +16,7 @@
   programs.git = {
     enable = true;
     userName = "Joonas Tikkanen";
-    userEmail = "joonas.tikkanen91@gmail.com";
+    userEmail = "joonas.tikkanen@kinetive.fi";
     extraConfig = {
       pull.rebase = "true";
     };

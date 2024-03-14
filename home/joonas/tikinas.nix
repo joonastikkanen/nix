@@ -1,6 +1,10 @@
 {...}: {
   imports = [
     ../modules/git.nix
+    ../modules/bash.nix
+    ../modules/firefox.nix
+    ../modules/ssh.nix
+    ../modules/tmux.nix
   ];
 
   # nixpkgs configuration
