@@ -3,10 +3,10 @@
   imports =
     [
       #./hardware-configuration.nix
-      ../../modules/common.nix
-      ../../modules/locales.nix
-      ../../modules/ssh.nix
-      ../../modules/tailscale.nix
+      ../modules/common.nix
+      ../modules/locales.nix
+      ../modules/ssh.nix
+      ../modules/tailscale.nix
     ];
 
   boot = {
@@ -58,7 +58,6 @@
   };
 
   virtualisation.docker.enable = true;
-  programs.bash.loginShellInit = "screenfetch";
   console.enable = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

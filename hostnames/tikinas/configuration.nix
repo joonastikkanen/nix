@@ -3,10 +3,10 @@
   imports =
     [
       ./hardware-configuration.nix
-      ../../modules/common.nix
-      ../../modules/locales.nix
-      ../../modules/ssh.nix
-      ../../modules/tailscale.nix
+      ../modules/common.nix
+      ../modules/locales.nix
+      ../modules/ssh.nix
+      ../modules/tailscale.nix
     ];
 
   # Bootloader.
