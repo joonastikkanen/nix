@@ -2,43 +2,33 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
-
-let
-  unstable = import
-    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixos-unstable)
-    # reuse the current configuration
-    { config = config.nixpkgs.config; };
-in
+{ config, pkgs, ... }:
 
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ../../modules/common.nix
-      ../../modules/locales.nix
-      ../../modules/laptop.nix
-      ../../modules/tailscale.nix
-      ../../modules/gnome.nix
-      ../../modules/devops.nix
-      ../../modules/networking.nix
+      ../modules/common.nix
+      ../modules/locales.nix
+      ../modules/laptop.nix
+      ../modules/tailscale.nix
+      ../modules/gnome.nix
+      ../modules/devops.nix
+      ../modules/networking.nix
     ];
 
   # Bootloader.
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/xxx";
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-uuid/8aac8772-7655-4944-8c5f-ba24eed971c2";
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/xxx";
+    { device = "/dev/disk/by-uuid/3026-D1E9";
       fsType = "vfat";
-    };
-
-
-  networking = {
-    hostName = "kinetive";
   };
+
+  networking.hostName = "work";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.joonas = {
@@ -65,14 +55,11 @@ in
     libreoffice
     pavucontrol
     spotify
-    teams
+    slack
     telegram-desktop
-    terraform
-    vagrant
-    virt-manager
     vlc
     whatsapp-for-linux
-   ]
-  system.stateVersion = "23.11"; 
+   ];
+  system.stateVersion = "nixos-unstable"; 
 
 }

@@ -39,11 +39,13 @@
     nixosConfigurations = {
       joonas-linux = nixosSystemFor "joonas-linux" ./hostnames/joonas-linux/configuration.nix;
       matebook = nixosSystemFor "matebook" ./hostnames/matebook/configuration.nix;
+      work = nixosSystemFor "work" ./hostnames/work/configuration.nix;
     };
 
     homeConfigurations = {
-      "joonas@joonas-linux" = home-manager.lib.homeManagerConfiguration (homeManagerFor "jooas" "joonas-linux");
+      "joonas@joonas-linux" = home-manager.lib.homeManagerConfiguration (homeManagerFor "joonas" "joonas-linux");
       "joonas@matebook" = home-manager.lib.homeManagerConfiguration (homeManagerFor "joonas" "matebook");
+      "joonas@work" = home-manager.lib.homeManagerConfiguration (homeManagerFor "joonas" "work");
     };
   };
 }

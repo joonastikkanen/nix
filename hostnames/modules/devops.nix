@@ -1,10 +1,5 @@
 { config, pkgs, ... }:
-let
-  unstable = import
-    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixos-unstable)
-    # reuse the current configuration
-    { config = config.nixpkgs.config; };
-in
+
 {
     virtualisation.libvirtd.enable = true; 
     environment.systemPackages = with pkgs; [
@@ -18,7 +13,7 @@ in
         podman-desktop
         podman-compose
         postman
-        unstable.vscode
+        vscode
         qemu
         vagrant
         virt-manager
@@ -26,9 +21,10 @@ in
         google-cloud-sdk
         nodenv
         nodejs_18
-        helm
+        kubernetes-helm
         kubectl
         remmina
         tfswitch
+        terraform
     ];
 }

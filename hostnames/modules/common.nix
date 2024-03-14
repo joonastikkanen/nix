@@ -1,6 +1,7 @@
 { config, pkgs, ... }:
 
 {
+    security.sudo.wheelNeedsPassword = false;
     services.fwupd.enable = true;
     environment.systemPackages = with pkgs; [
         curl
@@ -17,4 +18,8 @@
         jq
         yq
     ];
+    nix.settings = {
+        experimental-features = "nix-command flakes";
+        auto-optimize-store = true;
+    }
 }

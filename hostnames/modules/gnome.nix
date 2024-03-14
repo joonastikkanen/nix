@@ -5,8 +5,8 @@
         enable = true;
         displayManager.gdm.enable = true;
         desktopManager.gnome.enable = true;
-        layout = "fi";
-        xkbVariant = "";
+        xkb.variant = "";
+        xkb.layout = "fi";
         libinput = {
         enable = true;
 
