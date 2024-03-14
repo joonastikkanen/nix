@@ -17,6 +17,7 @@
         htop
         jq
         yq
+        git
     ];
     nix.settings = {
         experimental-features = "nix-command flakes";

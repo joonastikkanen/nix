@@ -13,6 +13,7 @@ in
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ../modules/common.nix
       ../modules/gnome.nix
       ../modules/locales.nix
       ../modules/sound.nix
@@ -20,6 +21,9 @@ in
       ../modules/networking.nix
       ../modules/tailscale.nix
     ];
+
+  # Kernel
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -69,10 +73,11 @@ in
     libreoffice
     pavucontrol
     spotify
-    sweethome3d.application
+    #sweethome3d.application
     teamspeak_client
     telegram-desktop
     vlc
+    vscode
     unstable.whatsapp-for-linux
   ];
 
