@@ -3,28 +3,33 @@
   imports =
     [
       ./hardware-configuration.nix
+      ../modules/common.nix
+      ../modules/locales.nix
+      ../modules/ssh.nix
+      ../modules/tailscale.nix
     ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.supportedFilesystems = [ "zfs" ];
-  boot.zfs.extraPools = [ "data" ];
+  fileSystems."/mnt/TIKINAS" = {
+    device = "10.20.30.20:/data";
+    fsType = "nfs";
+  };
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   
   networking = {
-    hostName = "tikinas";
-    hostId = "8f16e7a3"; 
+    hostName = "homeassistant";
     networkmanager.enable = true;
     firewall = {
       allowPing = true;
       enable = true;
-      allowedTCPPorts = [ 22 111 53 2049 3000 3306 4000 4001 4002 5357 7575 7878 8080 8086 8096 8123 8200 8880 8920 8989 9090 20048 ];
-      allowedUDPPorts = [ 53 67 111 2049 7359 1901 3702 4000 4001 4002 20048 ];
+      allowedTCPPorts = [ 22 8123 40000 ];
+      allowedUDPPorts = [ 5683 1900 46981 6666 6667 57904 5353 ];
     };
     interfaces.enp0s31f6.ipv4.addresses = [ {
-      address = "10.20.30.20";
+      address = "10.20.30.30";
       prefixLength = 24;
     } ];
     defaultGateway = "10.20.30.1";
@@ -32,26 +37,9 @@
     nameservers = [ "1.1.1.1" ];
 
     extraHosts = ''
+      10.20.30.20 tikinas
       10.20.30.40 tikiproxy
     '';
-  };
-
-  # Set your time zone.
-  time.timeZone = "Europe/Helsinki";
-
-  # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "fi_FI.UTF-8";
-    LC_IDENTIFICATION = "fi_FI.UTF-8";
-    LC_MEASUREMENT = "fi_FI.UTF-8";
-    LC_MONETARY = "fi_FI.UTF-8";
-    LC_NAME = "fi_FI.UTF-8";
-    LC_NUMERIC = "fi_FI.UTF-8";
-    LC_PAPER = "fi_FI.UTF-8";
-    LC_TELEPHONE = "fi_FI.UTF-8";
-    LC_TIME = "fi_FI.UTF-8";
   };
 
   users.users.joonas = {
@@ -82,66 +70,11 @@
     };
   };
 
-  services = {
-    zfs = {
-      autoScrub = { 
-        enable = true;
-      };
-    };
-    nfs.server = {
-        enable = true;
-        lockdPort = 4001;
-        mountdPort = 4002;
-        statdPort = 4000;
-        extraNfsdConfig = '''';
-        exports = ''
-          /data 10.20.30.0/24(sec=sys,rw,no_subtree_check,mountpoint)
-        '';
-    };
-    openssh = {
-      enable = true;
-    };
-    tailscale = {
-      enable = true;
-    };
-    samba-wsdd.enable = true;
-    samba = {
-      enable = true;
-      securityType = "user";
-      extraConfig = ''
-        workgroup = WORKGROUP
-        server string = smbnix
-        netbios name = smbnix
-        security = user 
-        #use sendfile = yes
-        #max protocol = smb2
-        # note: localhost is the ipv6 localhost ::1
-        hosts allow = 10.20.30. 127.0.0.1 localhost
-        hosts deny = 0.0.0.0/0
-        guest account = nobody
-        map to guest = bad user
-      '';
-      shares = {
-        public = {
-          path = "/data";
-          browseable = "yes";
-          "read only" = "no";
-          "guest ok" = "no";
-          "create mask" = "0644";
-          "directory mask" = "0755";
-          "force user" = "joonas";
-          "force group" = "joonas";
-        };
-      };
-    };
-  };
   virtualisation.docker.enable = true;
   virtualisation.docker.rootless = {
     enable = true;
     setSocketVariable = true;
   };
-
-#  environment.loginShellInit = "screenfetch";
   console.enable = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -162,7 +95,6 @@
     python3
     sqlite
     samba
-    screenfetch
     tmux
     unzip
     unrar
