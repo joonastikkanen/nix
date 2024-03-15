@@ -20,6 +20,7 @@ in
       ../modules/nvidia.nix
       ../modules/networking.nix
       ../modules/tailscale.nix
+      ../modules/gaming.nix
     ];
 
   # Kernel
