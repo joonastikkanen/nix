@@ -16,6 +16,7 @@
       ../modules/networking.nix
       ../modules/laptop.nix
       ../modules/tailscale.nix
+      ../modules/common.nix
     ];
 
   # Use the systemd-boot EFI boot loader.

@@ -9,7 +9,6 @@
     historySize = 10000;
     initExtra = ''
         export PS1='\[\e[38;5;253m\]\t\[\e[0m\] [\u@\h:\[\e[1m\]\w\[\e[0m\]]\\$ '
-        source <(kubectl completion bash)
         '';
   };
 }
