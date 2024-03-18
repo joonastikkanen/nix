@@ -62,6 +62,7 @@ in
     discord
     unstable.enpass
     flatpak
+    fondo
     freetype
     gcc
     gimp
