@@ -45,6 +45,7 @@
    environment.systemPackages = with pkgs; [
     enpass
     flatpak
+    fondo
     freetype
     firefox
     gimp
