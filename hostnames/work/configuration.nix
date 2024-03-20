@@ -57,6 +57,7 @@
     pavucontrol
     spotify
     slack
+    signal-desktop
     telegram-desktop
     vlc
     whatsapp-for-linux
