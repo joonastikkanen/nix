@@ -20,6 +20,7 @@
         yq
         git
         tree
+        pciutils
         dnsutils
         file
         nmap
