@@ -10,7 +10,8 @@
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ ];
+  boot.kernelModules = [ "vfio" "vfio_iommu_type1" "vfio_pci" "vfio_virqfd" ];
+  boot.extraModprobeConfig ="options vfio-pci ids=10de:1b81,10de:10f0,144d:a80a";
   boot.extraModulePackages = [ ];
   boot.kernelParams = [ "intel_iommu=on" ];
 

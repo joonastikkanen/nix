@@ -50,6 +50,41 @@ in
     extraGroups = [ "networkmanager" "wheel" "kvm" "input" "disk" "libvirtd" ];
   };
 
+  virtualisation.libvirtd = {
+    enable = true;
+    qemu.ovmf.enable = true;
+    qemu.runAsRoot = false;
+    onBoot = "ignore";
+    onShutdown = "shutdown";
+  };
+
+  # CHANGE: add your own user here
+  users.groups.libvirtd.members = [ "root" "joonas"];
+  
+  #     ls /nix/store/*OVMF*/FV/OVMF{,_VARS}.fd | tail -n2 | tr '\n' : | sed -e 's/:$//'
+  # to find your nix store paths
+  virtualisation.libvirtd.qemu.verbatimConfig = ''
+    nvram = [
+      "/nix/store/g500pnrjg12cg7dbznvl9hylik19cnav-OVMF-202311-fd/FV/OVMF.fd:/nix/store/g500pnrjg12cg7dbznvl9hylik19cnav-OVMF-202311-fd/FV/OVMF_VARS.fd"
+    ]
+  '';
+
+  systemd.tmpfiles.rules = [
+    "f /dev/shm/scream 0660 joonas qemu-libvirtd -"
+    "f /dev/shm/looking-glass 0660 joonas qemu-libvirtd -"
+  ];
+
+  systemd.user.services.scream-ivshmem = {
+    enable = true;
+    description = "Scream IVSHMEM";
+    serviceConfig = {
+      ExecStart = "${pkgs.scream}/bin/scream-ivshmem-pulse /dev/shm/scream";
+      Restart = "always";
+    };
+    wantedBy = [ "multi-user.target" ];
+    requires = [ "pulseaudio.service" ];
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
@@ -80,6 +115,11 @@ in
     telegram-desktop
     vlc
     vscode
+    virt-manager
+    qemu
+    OVMF
+    looking-glass-client
+    scream
     unstable.whatsapp-for-linux
   ];
 
