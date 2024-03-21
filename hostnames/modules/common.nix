@@ -22,6 +22,7 @@
         tree
         pciutils
         dnsutils
+        inetutils
         file
         nmap
         usbutils
