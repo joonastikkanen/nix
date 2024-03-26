@@ -121,6 +121,11 @@ in
     looking-glass-client
     scream
     unstable.whatsapp-for-linux
+    terraform
+    awscli2
+    tfswitch
+    python311
+    python311Packages.boto
   ];
 
   system = {
