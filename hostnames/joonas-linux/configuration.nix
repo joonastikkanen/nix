@@ -125,7 +125,7 @@ in
     awscli2
     tfswitch
     python311
-    python311Packages.boto
+    python311Packages.pip
   ];
 
   system = {
