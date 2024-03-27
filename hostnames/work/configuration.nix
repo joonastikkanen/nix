@@ -44,6 +44,7 @@
   # $ nix search wget
    environment.systemPackages = with pkgs; [
     enpass
+    evince
     flatpak
     fondo
     freetype
