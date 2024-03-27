@@ -17,7 +17,8 @@ in
       ../modules/gnome.nix
       ../modules/locales.nix
       ../modules/sound.nix
-      ../modules/nvidia.nix
+      #../modules/nvidia.nix
+      ../modules/amd-gpu.nix
       ../modules/networking.nix
       ../modules/tailscale.nix
       ../modules/gaming.nix
