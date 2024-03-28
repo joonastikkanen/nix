@@ -51,6 +51,7 @@
     firefox
     gimp
     google-chrome
+    gnome-firmware
     hunspellDicts.sv_FI
     marktext
     keepassxc
