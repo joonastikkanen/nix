@@ -65,6 +65,7 @@
   # $ nix search wget
    environment.systemPackages = with pkgs; [
     ansible
+    awscli2
     curl
     vim
     wget
