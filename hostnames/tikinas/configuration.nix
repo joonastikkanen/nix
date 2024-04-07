@@ -1,4 +1,10 @@
 { config, pkgs, lib, ... }:
+let
+  unstable = import
+    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixos-unstable)
+    # reuse the current configuration
+    { config = config.nixpkgs.config; };
+in
 {
   imports =
     [
@@ -14,6 +20,11 @@
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "zfs" ];
   boot.zfs.extraPools = [ "data" ];
+  # For cloudflared https://github.com/quic-go/quic-go/wiki/UDP-Buffer-Sizes
+  boot.kernel.sysctl = {
+      "net.core.rmem_max" = 2500000;
+      "net.core.wmem_max" = 2500000;
+    };
 
   hardware.bluetooth.enable = true; # enables support for Bluetooth
   
@@ -61,7 +72,7 @@
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run --token <TOKEN>";
+      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run";
       Restart = "always";
       User = "cloudflared";
       Group = "cloudflared";
@@ -127,7 +138,7 @@
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     ansible
-    cloudflared
+    unstable.cloudflared
     curl
     docker-compose
     git
