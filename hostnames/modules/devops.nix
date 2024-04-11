@@ -38,6 +38,7 @@
         nodejs_18
         kubernetes-helm
         kubectl
+        kubectx
         remmina
         tfswitch
         terraform
