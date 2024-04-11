@@ -19,6 +19,7 @@
     environment.systemPackages = with pkgs; [
         android-tools
         ansible
+        argocd
         awscli2
         azure-cli
         gcc
