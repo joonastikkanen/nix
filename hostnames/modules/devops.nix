@@ -34,6 +34,7 @@
         virt-manager
         dbeaver
         google-cloud-sdk
+        minikube
         nodenv
         nodejs_18
         kubernetes-helm
