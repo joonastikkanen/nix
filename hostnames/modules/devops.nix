@@ -1,6 +1,20 @@
 { config, pkgs, ... }:
 
 {
+
+    # Minimal configuration for NFS support with Vagrant.
+    services.nfs.server.enable = true;
+
+    # Add firewall exception for libvirt provider when using NFSv4 
+    networking.firewall.interfaces."virbr1" = {                                   
+        allowedTCPPorts = [ 2049 ];                                               
+        allowedUDPPorts = [ 2049 ];                                               
+    };  
+    virtualisation.docker.enable = true;
+    virtualisation.docker.rootless = {
+        enable = true;
+        setSocketVariable = true;
+    };
     virtualisation.libvirtd = {
     enable = true;
     qemu = {
@@ -24,9 +38,6 @@
         azure-cli
         gcc
         hugo
-        podman
-        podman-desktop
-        podman-compose
         postman
         vscode
         qemu

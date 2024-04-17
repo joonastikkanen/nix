@@ -11,6 +11,7 @@
   boot.initrd.availableKernelModules = [ "nvme" "xhci_pci" "thunderbolt" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ "dm-snapshot" ];
   boot.kernelModules = [ "kvm-amd" ];
+  boot.kernelParams = [ "cgroup_enable=memory" "swapaccount=1" "systemd.unified_cgroup_hierarchy=1" "cgroup_enable=cpuset" "cgroup_enable=devices" "cgroup_enable=freezer" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
