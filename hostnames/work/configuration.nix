@@ -35,7 +35,7 @@
       10.20.30.30 homeassistant
       10.20.30.40 tikiproxy
       10.20.30.60 watermeter
-      192.168.121.231 gitlab.kinetive.local registry.gitlab.kinetive.local storage.gitlab.kinetive.local
+      192.168.121.146 gitlab.kinetive.local registry.gitlab.kinetive.local storage.gitlab.kinetive.local
     '';
   };
   # Define a user account. Don't forget to set a password with ‘passwd’.
