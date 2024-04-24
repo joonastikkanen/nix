@@ -40,6 +40,22 @@
     homeDirectory = "/home/joonas";
   };
 
+  programs.ssh = {
+    startAgent = true;
+    extraConfig = ''
+    Host *
+      ServerAliveInterval 300
+      ServerAliveCountMax 5
+      IPQoS=throughput
+      ForwardAgent yes
+
+    Host gitlab
+      User tiki
+      Hostname gitlab.kinetive.fi
+      Port 2022
+    '';
+  };
+
   # Enable home-manager and git
   programs.home-manager.enable = true;
 

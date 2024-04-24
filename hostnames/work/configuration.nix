@@ -45,8 +45,6 @@
     extraGroups = [ "networkmanager" "wheel" "kvm" "input" "disk" "libvirtd" "docker"];
   };
 
-  programs.ssh.startAgent = true;
-
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   # List packages installed in system profile. To search, run:
