@@ -40,6 +40,8 @@
     extraGroups = [ "networkmanager" "wheel" "kvm" "input" "disk" "libvirtd" ];
   };
   
+  programs.ssh.startAgent = true;
+
   users.users.miia = {
     isNormalUser = true;
     description = "Miia Tikkanen";

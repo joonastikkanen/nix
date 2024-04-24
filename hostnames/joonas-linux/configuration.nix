@@ -51,6 +51,8 @@ in
     extraGroups = [ "networkmanager" "wheel" "kvm" "input" "disk" "libvirtd" ];
   };
 
+  programs.ssh.startAgent = true;
+
   virtualisation.libvirtd = {
     enable = true;
     qemu.ovmf.enable = true;
