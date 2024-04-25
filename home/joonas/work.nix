@@ -1,7 +1,6 @@
 {...}: {
   imports = [
     ../modules/firefox.nix
-    ../modules/ssh.nix
     ../modules/tmux.nix
    ];
 
@@ -41,7 +40,7 @@
   };
 
   programs.ssh = {
-    startAgent = true;
+    addKeysToAgent = "yes";
     extraConfig = ''
     Host *
       ServerAliveInterval 300
