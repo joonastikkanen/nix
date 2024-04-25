@@ -83,13 +83,16 @@ in
 #      Group = "cloudflared";
 #    };
 #  };
-
+  systemd.services."getty@tty1".enable = false;
+  systemd.services."autovt@tty1".enable = false;
   services = {
     zfs = {
       autoScrub = { 
         enable = true;
       };
     };
+    displayManager.autoLogin.enable = true;
+    displayManager.autoLogin.user = "joonas";
     nfs.server = {
         enable = true;
         lockdPort = 4001;
