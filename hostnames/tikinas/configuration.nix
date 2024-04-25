@@ -20,7 +20,7 @@ in
   boot.loader.systemd-boot = {
     enable = true;
     memtest86.enable = true;
-  }
+  };
 
   boot.loader.efi.canTouchEfiVariables = true;
   boot.supportedFilesystems = [ "zfs" ];
@@ -40,8 +40,8 @@ in
     firewall = {
       allowPing = true;
       enable = true;
-      allowedTCPPorts = [ 22 111 53 2049 3000 3306 4000 4001 4002 5357 7575 7878 8080 8086 8096 8123 8200 8880 8920 8989 9090 20048 ];
-      allowedUDPPorts = [ 53 67 111 2049 7359 1901 3702 4000 4001 4002 20048 ];
+      allowedTCPPorts = [ 22 111 53 2049 3000 3306 3389  4000 4001 4002 5357 7575 7878 8080 8086 8096 8123 8200 8880 8920 8989 9090 20048 ];
+      allowedUDPPorts = [ 53 67 111 2049 7359 1901 3702 3389 4000 4001 4002 20048 ];
     };
     interfaces.enp0s31f6.ipv4.addresses = [ {
       address = "10.20.30.20";
@@ -68,21 +68,21 @@ in
     ];
   };
 
-  users.users.cloudflared = {
-    group = "cloudflared";
-    isSystemUser = true;
-  };
-  users.groups.cloudflared = { };
-  systemd.services.clourflared = {
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" ];
-    serviceConfig = {
-      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run";
-      Restart = "always";
-      User = "cloudflared";
-      Group = "cloudflared";
-    };
-  };
+#  users.users.cloudflared = {
+#    group = "cloudflared";
+#    isSystemUser = true;
+#  };
+#  users.groups.cloudflared = { };
+#  systemd.services.clourflared = {
+#    wantedBy = [ "multi-user.target" ];
+#    after = [ "network.target" ];
+#    serviceConfig = {
+#      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run";
+#      Restart = "always";
+#      User = "cloudflared";
+#      Group = "cloudflared";
+#    };
+#  };
 
   services = {
     zfs = {
@@ -149,6 +149,12 @@ in
     geary # email reader
     evince # document viewer
     gnome-characters
+    gnome-clocks
+    gnome-calendar
+    gnome-contacts
+    gnome-maps
+    gnome-weather
+    simple-scan
     totem # video player
     tali # poker game
     iagno # go game
@@ -163,6 +169,7 @@ in
     unstable.cloudflared
     curl
     docker-compose
+    firefox
     git
     python311Packages.zigpy
     python311Packages.pip
@@ -181,6 +188,7 @@ in
     unrar
     usbutils
     vim
+    vscode
     wget
     yq
   ];
