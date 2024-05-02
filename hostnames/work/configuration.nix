@@ -46,6 +46,7 @@
   };
 
   programs.ssh.startAgent = true;
+  services.flatpak.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -54,7 +55,6 @@
    environment.systemPackages = with pkgs; [
     enpass
     evince
-    flatpak
     fondo
     freetype
     firefox

@@ -38,6 +38,7 @@
         azure-cli
         gcc
         hugo
+        hcloud
         postman
         vscode
         qemu
