@@ -9,17 +9,21 @@
         xkb.layout = "fi";
         libinput = {
         enable = true;
-
-        # disabling mouse acceleration
-        mouse = {
-            accelProfile = "flat";
-        };
         };
 
         excludePackages = with pkgs; [
             xterm
         ];
     };
+
+    services.libinput = {
+        enable = true;
+        # disabling mouse acceleration
+        mouse = {
+            accelProfile = "flat";
+        };
+    };
+
     environment.systemPackages = with pkgs; [
         gnomeExtensions.appindicator
         gnomeExtensions.sound-output-device-chooser

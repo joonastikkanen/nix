@@ -36,6 +36,7 @@
         argocd
         awscli2
         azure-cli
+        bundler
         gcc
         hugo
         hcloud
@@ -45,6 +46,7 @@
         vagrant
         virt-manager
         dbeaver
+        gnumake
         google-cloud-sdk
         minikube
         nodenv
@@ -53,6 +55,9 @@
         kubectl
         kubectx
         remmina
+        ruby
+        rubyPackages.nio4r
+        rake
         tfswitch
         terraform
     ];

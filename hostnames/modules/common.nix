@@ -5,6 +5,7 @@
     security.sudo.wheelNeedsPassword = false;
     services.fwupd.enable = true;
     environment.systemPackages = with pkgs; [
+        async
         curl
         git
         neofetch
