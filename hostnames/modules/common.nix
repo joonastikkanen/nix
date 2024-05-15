@@ -7,27 +7,28 @@
     environment.systemPackages = with pkgs; [
         async
         curl
+        dnsutils
+        file
         git
-        neofetch
+        htop
+        inetutils
+        jq
+        localsend
         ncdu
+        neofetch
+        nmap
         nnn
         openssl
+        pciutils
         tmux
-        unzip
+        tree
+        uncgi
         unrar
+        unzip
+        usbutils
         vim
         wget
-        htop
-        jq
         yq
-        git
-        tree
-        pciutils
-        dnsutils
-        inetutils
-        file
-        nmap
-        usbutils
     ];
     nix.settings = {
         experimental-features = "nix-command flakes";

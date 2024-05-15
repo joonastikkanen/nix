@@ -170,14 +170,10 @@ in
   nixpkgs.config.allowUnfree = true;
   environment.systemPackages = with pkgs; [
     ansible
-    unstable.cloudflared
     curl
     docker-compose
     firefox
     git
-    python311Packages.zigpy
-    python311Packages.pip
-    python311Packages.virtualenv
     htop
     jq
     neofetch
@@ -195,6 +191,10 @@ in
     vscode
     wget
     yq
+    unstable.cloudflared
+    python311Packages.zigpy
+    python311Packages.pip
+    python311Packages.virtualenv
   ];
 
   hardware.enableRedistributableFirmware = true;

@@ -112,23 +112,20 @@ in
     kid3
     libreoffice
     pavucontrol
-    spotify
-    #sweethome3d.application
-    teamspeak_client
-    telegram-desktop
-    vlc
-    vscode
-    virt-manager
-    qemu
-    OVMF
-    looking-glass-client
-    scream
-    unstable.whatsapp-for-linux
-    terraform
-    awscli2
-    tfswitch
     python311
     python311Packages.pip
+    qemu
+    awscli2
+    scream
+    spotify
+    teamspeak_client
+    telegram-desktop
+    terraform
+    tfswitch
+    unstable.whatsapp-for-linux
+    virt-manager
+    vlc
+    vscode
   ];
 
   system = {

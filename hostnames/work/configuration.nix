@@ -63,13 +63,13 @@
     google-chrome
     gnome-firmware
     hunspellDicts.sv_FI
-    marktext
     keepassxc
     libreoffice
+    marktext
     pavucontrol
-    spotify
-    slack
     signal-desktop
+    slack
+    spotify
     telegram-desktop
     vlc
     whatsapp-for-linux
