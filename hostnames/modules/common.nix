@@ -22,7 +22,6 @@
         pciutils
         tmux
         tree
-        uncgi
         unrar
         unzip
         usbutils
