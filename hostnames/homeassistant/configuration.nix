@@ -92,6 +92,7 @@
     jq
     neofetch
     nfs-utils
+    netdata
     openssl
     python3
     sqlite
