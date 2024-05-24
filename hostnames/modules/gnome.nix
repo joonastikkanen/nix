@@ -7,9 +7,6 @@
         desktopManager.gnome.enable = true;
         xkb.variant = "";
         xkb.layout = "fi";
-        libinput = {
-        enable = true;
-        };
 
         excludePackages = with pkgs; [
             xterm

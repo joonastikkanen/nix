@@ -37,7 +37,7 @@
             awscli2
             azure-cli
             bundler
-            dbeaver
+            dbeaver-bin
             gcc
             gnumake
             google-cloud-sdk
