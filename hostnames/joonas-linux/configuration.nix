@@ -87,7 +87,7 @@ in
     wantedBy = [ "multi-user.target" ];
     requires = [ "pulseaudio.service" ];
   };
-
+  services.fprintd.enable = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
@@ -117,6 +117,7 @@ in
     qemu
     awscli2
     scream
+    signal-desktop
     spotify
     teamspeak_client
     telegram-desktop
