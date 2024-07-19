@@ -4,6 +4,7 @@
     enableCompletion = true;
     shellAliases = {
       k = "kubectl";
+      ll = "ls -lsa";
     };
     historyFileSize = 1000000;
     historySize = 10000;
