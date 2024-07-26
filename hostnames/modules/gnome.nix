@@ -29,7 +29,7 @@
         gnomeExtensions.blur-my-shell
         gnomeExtensions.auto-move-windows
         gnomeExtensions.dash-to-dock
-        gnome.gnome-tweaks
+        gnome-tweaks
         polkit_gnome
         gparted
     ];
