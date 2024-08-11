@@ -64,7 +64,7 @@
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run --token <TOKEN>";
+      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel --no-autoupdate run --token eyJhIjoiNGQzOGFjYmIwYmQyODQ5MmNhZDRjM2Y3ZmM5ZDk0MzUiLCJ0IjoiYjI4ZmY0YTktOGNkNy00M2FiLThiNjYtYTQ2OWUwYjgyM2Q3IiwicyI6Ik56Vm1ObUV3T1RrdE5EZGhZUzAwWlRObExXSXdPREV0WXpBek1ERTRNMlJpTWpVMCJ9";
       Restart = "always";
       User = "cloudflared";
       Group = "cloudflared";
