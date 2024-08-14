@@ -74,6 +74,7 @@
     telegram-desktop
     vlc
     whatsapp-for-linux
+    x2goclient
    ];
   system.stateVersion = "nixos-unstable"; 
 
