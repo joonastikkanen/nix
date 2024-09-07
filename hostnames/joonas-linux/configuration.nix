@@ -71,7 +71,11 @@ in
       "/nix/store/g500pnrjg12cg7dbznvl9hylik19cnav-OVMF-202311-fd/FV/OVMF.fd:/nix/store/g500pnrjg12cg7dbznvl9hylik19cnav-OVMF-202311-fd/FV/OVMF_VARS.fd"
     ]
   '';
-
+  virtualisation.docker.enable = true;
+  virtualisation.docker.rootless = {
+      enable = true;
+      setSocketVariable = true;
+  };
   systemd.tmpfiles.rules = [
     "f /dev/shm/scream 0660 joonas qemu-libvirtd -"
     "f /dev/shm/looking-glass 0660 joonas qemu-libvirtd -"
