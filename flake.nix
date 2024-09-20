@@ -11,6 +11,12 @@
 
     # NixOS profiles to optimize settings for different hardware
     hardware.url = "github:nixos/nixos-hardware";
+    
+    # NixOS Router
+    nixos-router = {
+      url = "github:chayleaf/nixos-router";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
   };
 

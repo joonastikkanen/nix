@@ -141,6 +141,7 @@ in
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     tcpdump
+    iperf
   ];
 
     dhcpd4 = {
