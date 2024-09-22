@@ -91,7 +91,6 @@ in
     wantedBy = [ "multi-user.target" ];
     requires = [ "pulseaudio.service" ];
   };
-  services.fprintd.enable = true;
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [
