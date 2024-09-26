@@ -26,98 +26,9 @@ in
   };
 
    networking = {
-
-    hostName = "nix-router";
+    hostName = "nixos-router";
     nameservers = [ "${publicDnsServer}" ];
     firewall.enable = false;
-
-    interfaces = {
-      enp1s0 = {
-        useDHCP = true;
-      };
-      enp2s0 = {
-        useDHCP = false;
-        ipv4.addresses = [{
-          address = "10.20.30.1";
-          prefixLength = 24;
-        }]
-      };
-      enp3s0 = {
-        useDHCP = false;
-      };
-      enp4s0 = {
-        useDHCP = false;
-      };
-      enp5s0 = {
-        useDHCP = false;
-      };
-      enp6s0 = {
-        useDHCP = false;
-      };
-      enp7s0 = {
-        useDHCP = false;
-      };
-      enp7s0 = {
-        useDHCP = false;
-      };
-      wlp9s0 = {
-        useDHCP = false;
-        ipv4.addresses = [{
-          address = "10.20.40.1";
-          prefixLength = 24;
-        }]
-      }
-    };
-
-    nftables = {
-      enable = true;
-      ruleset = ''
-        table ip filter {
-          chain input {
-            type filter hook input priority 0; policy drop;
-
-            iifname { "enp2s0", "wlp9s0" } accept comment "Allow local network to access the router"
-            iifname "enp1s0" ct state { established, related } accept comment "Allow established traffic"
-            iifname "enp1s0" icmp type { echo-request, destination-unreachable, time-exceeded } counter accept comment "Allow select ICMP"
-            iifname "enp1s0" counter drop comment "Drop all other unsolicited traffic from wan"
-          }
-          chain forward {
-            type filter hook forward priority 0; policy drop;
-            iifname { "enp2s0", "wlp9s0" } oifname { "enp1s0" } accept comment "Allow trusted LAN to WAN"
-            iifname { "enp1s0" } oifname { "enp2s0", "wlp9s0" } ct state established, related accept comment "Allow established back to LANs"
-            iifname { "enp2s0" } oifname { "wlp9s0" } counter accept comment "Allow trusted LAN to IoT"
-            iifname { "wlp9s0" } oifname { "enp2s0" } ct state { established, related } counter accept comment "Allow established back to LANs"
-          }
-        }
-
-        table ip nat {
-          chain postrouting {
-            type nat hook postrouting priority 100; policy accept;
-            oifname "enp1s0" masquerade
-            oifname "wlp9s0" masquerade
-          } 
-        }
-
-        table ip6 filter {
-	        chain input {
-            type filter hook input priority 0; policy drop;
-          }
-          chain forward {
-            type filter hook forward priority 0; policy drop;
-          }
-        }
-      '';
-    };
-  };
-
-  services.create_ap = {
-    enable = true;
-    settings = {
-      INTERNET_IFACE = "enp1s0";
-      WIFI_IFACE = "wlp9s0";
-      SSID = "SipsikulhoIoT";
-      PASSPHRASE = "bileet72h";
-    };
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -144,33 +55,6 @@ in
     iperf
   ];
 
-    dhcpd4 = {
-      enable = true;
-      interfaces = [ "enp2s0" ];
-      machines = [
-        { 
-          hostName = "tikinas"; ethernetAddress = "4c:cc:6a:bb:7a:d9"; ipAddress = "10.20.30.20";
-          hostName = "homeassistant"; ethernetAddress = "6c:4b:90:79:3e:f6"; ipAddress = "10.20.30.30";
-        } 
-      ];
-      extraConfig = ''
-        subnet 10.20.30.0 netmask 255.255.255.0 {
-          option routers 10.20.30.1;
-          option domain-name-servers ${publicDnsServer};
-          option subnet-mask 255.255.255.0;
-          interface enp2s0;
-          range 10.20.30.2 10.20.30.254;
-        
-        subnet 10.20.40.0 netmask 255.255.255.0 {
-          option routers 10.20.40.1;
-          option domain-name-servers ${publicDnsServer};
-          option subnet-mask 255.255.255.0;
-          interface wlp9s0;
-          range 10.20.40.2 10.20.30.254;
-        }
-      '';
-    };
-
-  system.stateVersion = "24.05"; # Did you read the comment?
+  system.stateVersion = "24.05";
 
 }
