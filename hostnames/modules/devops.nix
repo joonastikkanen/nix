@@ -47,6 +47,7 @@
             kubectx
             kubernetes-helm
             minikube
+            minicom
             nodenv
             nodejs_18
             postman
@@ -55,6 +56,7 @@
             remmina
             ruby
             rubyPackages.nio4r
+            screen
             tfswitch
             terraform
             vagrant
