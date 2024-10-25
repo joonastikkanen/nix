@@ -35,7 +35,6 @@
             ansible
             argocd
             awscli2
-            azure-cli
             bundler
             dbeaver-bin
             gcc
@@ -59,7 +58,7 @@
             screen
             tfswitch
             terraform
-            vagrant
+            #vagrant
             virt-manager
             vscode
         ];

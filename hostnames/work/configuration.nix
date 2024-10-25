@@ -43,7 +43,7 @@
   users.users.joonas = {
     isNormalUser = true;
     description = "Joonas Tikkanen";
-    extraGroups = [ "networkmanager" "wheel" "kvm" "input" "disk" "libvirtd" "docker"];
+    extraGroups = [ "networkmanager" "wheel" "kvm" "input" "disk" "libvirtd" "docker" "dialout"];
   };
 
   programs.ssh.startAgent = true;
