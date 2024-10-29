@@ -45,6 +45,7 @@
             kubectl
             kubectx
             kubernetes-helm
+            kustomize
             minikube
             minicom
             nodenv
