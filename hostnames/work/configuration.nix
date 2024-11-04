@@ -49,6 +49,18 @@
   programs.ssh.startAgent = true;
   services.flatpak.enable = true;
 
+ services.netbird = {
+    enable = true;
+    tunnels = {
+      kalmar = {
+        environment = {
+          NB_MANAGEMENT_URL = "https://netbird.kalmar-one.com";
+          NB_ADMIN_URL = "https://netbird.kalmar-one.com";
+        };
+      };
+    };
+  };
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   # List packages installed in system profile. To search, run:
