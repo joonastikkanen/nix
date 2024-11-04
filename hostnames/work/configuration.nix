@@ -67,6 +67,9 @@
     keepassxc
     libreoffice
     marktext
+    netbird
+    netbird-ui
+    netbird-dashboard
     pavucontrol
     signal-desktop
     slack
