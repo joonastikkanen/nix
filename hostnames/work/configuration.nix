@@ -91,6 +91,6 @@
     whatsapp-for-linux
     x2goclient
    ];
-  system.stateVersion = "nixos-unstable"; 
+  system.stateVersion = "24.11"; 
 
 }
