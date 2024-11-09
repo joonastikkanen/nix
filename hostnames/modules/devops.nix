@@ -35,6 +35,7 @@
             ansible
             argocd
             awscli2
+            distrobox
             bundler
             dbeaver-bin
             gcc

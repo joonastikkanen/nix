@@ -101,6 +101,7 @@ in
    environment.systemPackages = with pkgs; [
     bitwarden
     discord
+    distrobox
     unstable.enpass
     flatpak
     fondo
@@ -129,7 +130,7 @@ in
     unstable.whatsapp-for-linux
     virt-manager
     vlc
-    vscode
+    unstable.vscode
   ];
 
   system = {
