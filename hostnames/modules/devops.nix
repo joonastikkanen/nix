@@ -45,6 +45,7 @@
             hcloud
             kubectl
             kubectx
+            kubeseal
             kubernetes-helm
             kustomize
             minikube
