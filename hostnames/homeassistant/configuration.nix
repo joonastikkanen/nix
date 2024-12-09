@@ -25,7 +25,7 @@
     firewall = {
       allowPing = true;
       enable = true;
-      allowedTCPPorts = [ 22 8123 40000 ];
+      allowedTCPPorts = [ 22 8123 40000 6052 8080 ];
       allowedUDPPorts = [ 5683 1900 46981 6666 6667 57904 5353 ];
     };
     interfaces.enp0s31f6.ipv4.addresses = [ {
