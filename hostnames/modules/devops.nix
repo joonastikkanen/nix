@@ -45,6 +45,7 @@
             hcloud
             kubectl
             kubectx
+            kubecm
             kubeseal
             kubernetes-helm
             kustomize
