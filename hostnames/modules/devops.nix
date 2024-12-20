@@ -36,6 +36,7 @@
             argocd
             awscli2
             distrobox
+            docker-compose
             bundler
             dbeaver-bin
             gcc
