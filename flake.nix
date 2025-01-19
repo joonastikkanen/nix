@@ -42,6 +42,7 @@
       work = nixosSystemFor "work" ./hostnames/work/configuration.nix;
       tikinas = nixosSystemFor "tikinas" ./hostnames/tikinas/configuration.nix;
       homeassistant = nixosSystemFor "homeassistant" ./hostnames/homeassistant/configuration.nix;
+      jellyfin = nixosSystemFor "jellyfin" ./hostnames/jellyfin/configuration.nix;
     };
 
     homeConfigurations = {
@@ -49,7 +50,7 @@
       "joonas@matebook" = home-manager.lib.homeManagerConfiguration (homeManagerFor "joonas" "matebook");
       "joonas@work" = home-manager.lib.homeManagerConfiguration (homeManagerFor "joonas" "work");
       "joonas@tikinas" = home-manager.lib.homeManagerConfiguration (homeManagerFor "joonas" "tikinas");
-      "joonas@homeassistant" = home-manager.lib.homeManagerConfiguration (homeManagerFor "joonas" "homeassistant");
+      "joonas@jellyfin" = home-manager.lib.homeManagerConfiguration (homeManagerFor "joonas" "jellyfin");
     };
   };
 }
