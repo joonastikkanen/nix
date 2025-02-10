@@ -53,6 +53,7 @@
     enable = true;
     tunnels = {
       kalmar = {
+        port = 51820;
         environment = {
           NB_MANAGEMENT_URL = "https://netbird.kalmar-one.com";
           NB_ADMIN_URL = "https://netbird.kalmar-one.com";
