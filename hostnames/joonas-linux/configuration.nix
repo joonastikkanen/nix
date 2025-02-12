@@ -3,18 +3,13 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, lib, ... }:
-let
-  unstable = import
-    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixos-unstable)
-    # reuse the current configuration
-    { config = config.nixpkgs.config; };
-in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../modules/common.nix
-      ../modules/gnome.nix
+      #../modules/gnome.nix
+      ../modules/kde.nix
       ../modules/locales.nix
       ../modules/sound.nix
       #../modules/nvidia.nix
@@ -37,10 +32,10 @@ in
       options = [ "rw" "uid=1000" "gid=1000" ];
     };
 
-  fileSystems."/mnt/TIKINAS" = {
-    device = "10.20.30.20:/data";
-    fsType = "nfs";
-  };
+  #fileSystems."/mnt/TIKINAS" = {
+  #  device = "10.20.30.20:/data";
+  #  fsType = "nfs";
+  #};
 
   networking.hostName = "joonas-linux";
 
@@ -63,46 +58,21 @@ in
 
   # CHANGE: add your own user here
   users.groups.libvirtd.members = [ "root" "joonas"];
-  
-  #     ls /nix/store/*OVMF*/FV/OVMF{,_VARS}.fd | tail -n2 | tr '\n' : | sed -e 's/:$//'
-  # to find your nix store paths
-  virtualisation.libvirtd.qemu.verbatimConfig = ''
-    nvram = [
-      "/nix/store/g500pnrjg12cg7dbznvl9hylik19cnav-OVMF-202311-fd/FV/OVMF.fd:/nix/store/g500pnrjg12cg7dbznvl9hylik19cnav-OVMF-202311-fd/FV/OVMF_VARS.fd"
-    ]
-  '';
   virtualisation.docker.enable = true;
   virtualisation.docker.rootless = {
       enable = true;
       setSocketVariable = true;
   };
-  systemd.tmpfiles.rules = [
-    "f /dev/shm/scream 0660 joonas qemu-libvirtd -"
-    "f /dev/shm/looking-glass 0660 joonas qemu-libvirtd -"
-  ];
 
-  systemd.user.services.scream-ivshmem = {
-    enable = true;
-    description = "Scream IVSHMEM";
-    serviceConfig = {
-      ExecStart = "${pkgs.scream}/bin/scream-ivshmem-pulse /dev/shm/scream";
-      Restart = "always";
-    };
-    wantedBy = [ "multi-user.target" ];
-    requires = [ "pulseaudio.service" ];
-  };
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-  	"electron-24.8.6"
-  ];
   # List packages installed in system profile. To search, run:
   # $ nix search wget
    environment.systemPackages = with pkgs; [
     bitwarden
     discord
     distrobox
-    unstable.enpass
+    enpass
     flatpak
     fondo
     freetype
@@ -127,18 +97,14 @@ in
     telegram-desktop
     terraform
     tfswitch
-    unstable.whatsapp-for-linux
+    whatsapp-for-linux
     virt-manager
     vlc
-    unstable.vscode
+    vscode
   ];
 
   system = {
-    stateVersion = "24.11";
-    autoUpgrade = {
-      enable = true;
-      allowReboot = false;
-    };
+    stateVersion = "25.05";
   };
 
 }
