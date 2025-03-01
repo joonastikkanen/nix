@@ -104,27 +104,31 @@ in
           /data 10.20.30.0/24(sec=sys,rw,no_subtree_check,mountpoint)
         '';
     };
-    samba-wsdd.enable = true;
+    samba-wsdd = {
+      enable = true;
+      openFirewall = true;
+    };
     samba = {
       enable = true;
-      securityType = "user";
-      extraConfig = ''
-        workgroup = WORKGROUP
-        server string = smbnix
-        netbios name = smbnix
-        security = user 
-        #use sendfile = yes
-        #max protocol = smb2
-        # note: localhost is the ipv6 localhost ::1
-        hosts allow = 10.20.30. 127.0.0.1 localhost
-        hosts deny = 0.0.0.0/0
-        guest account = nobody
-        map to guest = bad user
-      '';
-      shares = {
-        public = {
-          path = "/data";
-          browseable = "yes";
+      #securityType = "user";
+      openFirewall = true;
+      settings = {
+        global = {
+          "workgroup" = "WORKGROUP";
+          "server string" = "smbnix";
+          "netbios name" = "smbnix";
+          "security" = "user";
+          #use sendfile = yes
+          #max protocol = smb2
+          # note: localhost is the ipv6 localhost ::1
+          "hosts allow" = "10.20.30. 127.0.0.1 localhost";
+          "hosts deny" = "0.0.0.0/0";
+          "guest account" = "nobody";
+          "map to guest" = "bad user";
+        };
+        "public" = {
+          "path" = "/data";
+          "browseable" = "yes";
           "read only" = "no";
           "guest ok" = "no";
           "create mask" = "0644";
@@ -199,5 +203,5 @@ in
   ];
 
   hardware.enableRedistributableFirmware = true;
-  system.stateVersion = "23.05";
+  system.stateVersion = "24.11";
 }
