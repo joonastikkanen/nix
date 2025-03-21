@@ -37,6 +37,7 @@
       10.20.30.60 watermeter
       #192.168.121.146 gitlab.kinetive.local registry.gitlab.kinetive.local storage.gitlab.kinetive.local 
       10.10.10.10 rancher.kinetive.local
+      192.168.200.190 kinetivepi
     '';
   };
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -92,6 +93,6 @@
     whatsapp-for-linux
     x2goclient
    ];
-  system.stateVersion = "24.11"; 
+  system.stateVersion = "25.11"; 
 
 }
