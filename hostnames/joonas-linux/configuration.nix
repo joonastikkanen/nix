@@ -8,8 +8,8 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../modules/common.nix
-      #../modules/gnome.nix
-      ../modules/kde.nix
+      ../modules/gnome.nix
+      #../modules/kde.nix
       ../modules/locales.nix
       ../modules/sound.nix
       #../modules/nvidia.nix
@@ -43,21 +43,11 @@
   users.users.joonas = {
     isNormalUser = true;
     description = "Joonas Tikkanen";
-    extraGroups = [ "networkmanager" "wheel" "kvm" "input" "disk" "libvirtd" "dialout" ];
+    extraGroups = [ "networkmanager" "wheel" "kvm" "input" "disk" "libvirtd" "dialout" "docker" ];
   };
 
   programs.ssh.startAgent = true;
 
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu.ovmf.enable = true;
-    qemu.runAsRoot = false;
-    onBoot = "ignore";
-    onShutdown = "shutdown";
-  };
-
-  # CHANGE: add your own user here
-  users.groups.libvirtd.members = [ "root" "joonas"];
   virtualisation.docker.enable = true;
   virtualisation.docker.rootless = {
       enable = true;
@@ -72,10 +62,14 @@
     bitwarden
     discord
     distrobox
-    enpass
     flatpak
     fondo
     freetype
+    freecad-wayland
+    fluent-gtk-theme
+    fluent-icon-theme
+    graphite-cursors
+    graphite-gtk-theme
     gcc
     gimp
     go
@@ -85,18 +79,17 @@
     hunspellDicts.sv_FI
     kid3
     libreoffice
+    nordic
     pavucontrol
     python311
     python311Packages.pip
     qemu
-    awscli2
     scream
     signal-desktop
     spotify
-    teamspeak_client
+    sweet
+    sweethome3d.application
     telegram-desktop
-    terraform
-    tfswitch
     whatsapp-for-linux
     virt-manager
     vlc
@@ -104,7 +97,7 @@
   ];
 
   system = {
-    stateVersion = "25.05";
+    stateVersion = "24.11";
   };
 
 }
