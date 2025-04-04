@@ -23,8 +23,17 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader = {
+      systemd-boot.enable = true;
+      efi.canTouchEfiVariables = true;
+      systemd-boot.entries = [
+        {
+          title = "Windows 10";
+          loader = "/EFI/Microsoft/Boot/bootmgfw.efi";
+          options = "root=PARTUUID=1eb0170b-7f77-4f9a-89e1-fd614b339be1 ro";
+        }
+      ];
+  };
   boot.supportedFilesystems = [ "ntfs" ];
   fileSystems."/mnt/DATA" =
     { device = "/dev/disk/by-label/DATA";
