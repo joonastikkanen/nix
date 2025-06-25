@@ -47,7 +47,6 @@
     extraGroups = [ "networkmanager" "wheel" "kvm" "input" "disk" "libvirtd" "docker" "dialout"];
   };
 
-  programs.ssh.startAgent = true;
   services.flatpak.enable = true;
 
  services.netbird = {

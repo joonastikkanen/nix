@@ -53,7 +53,7 @@
             minikube
             minicom
             nodenv
-            nodejs_18
+            nodejs_24
             postman
             qemu
             rake

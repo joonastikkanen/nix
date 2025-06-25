@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
 {
-    programs.ssh.startAgent = true;
     security.sudo.wheelNeedsPassword = false;
     services.fwupd.enable = true;
     environment.systemPackages = with pkgs; [

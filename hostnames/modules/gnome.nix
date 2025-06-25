@@ -1,10 +1,12 @@
 { config, pkgs, ... }:
 
 {
-    services.xserver = {
-        enable = true;
+    services = {
         displayManager.gdm.enable = true;
         desktopManager.gnome.enable = true;
+    };
+    services.xserver = {
+        enable = true;
         xkb.variant = "";
         xkb.layout = "fi";
 
