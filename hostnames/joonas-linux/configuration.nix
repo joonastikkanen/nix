@@ -24,15 +24,15 @@
 
   # Bootloader.
   boot.loader = {
-      systemd-boot.enable = true;
+      systemd-boot = {
+        enable = true;
+        edk2-uefi-shell.enable = true;
+        memtest86.enable = true;
+        configurationLimit = 5;
+        windows.winkkari.title = "Windows 10";
+        windows.winkkari.efiDeviceHandle = "HD1b";
+      };
       efi.canTouchEfiVariables = true;
-      systemd-boot.entries = [
-        {
-          title = "Windows 10";
-          loader = "/EFI/Microsoft/Boot/bootmgfw.efi";
-          options = "root=PARTUUID=1eb0170b-7f77-4f9a-89e1-fd614b339be1 ro";
-        }
-      ];
   };
   boot.supportedFilesystems = [ "ntfs" ];
   fileSystems."/mnt/DATA" =
