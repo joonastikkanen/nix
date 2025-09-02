@@ -55,6 +55,7 @@
             nodenv
             nodejs_24
             postman
+            openbao
             qemu
             rake
             remmina

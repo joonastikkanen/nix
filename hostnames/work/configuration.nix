@@ -17,6 +17,10 @@
       ../modules/networking.nix
     ];
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "libsoup-2.74.3"
+  ];
+
   # Bootloader.
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
