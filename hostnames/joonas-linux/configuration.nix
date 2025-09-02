@@ -8,12 +8,13 @@
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../modules/common.nix
-      ../modules/gnome.nix
+      #../modules/gnome.nix
       #../modules/kde.nix
+      ../modules/hyprland.nix
       ../modules/locales.nix
       ../modules/sound.nix
       #../modules/nvidia.nix
-      ../modules/amd-gpu.nix
+      #../modules/amd-gpu.nix
       ../modules/networking.nix
       ../modules/tailscale.nix
       ../modules/gaming.nix
@@ -46,6 +47,11 @@
   #  fsType = "nfs";
   #};
 
+  nixpkgs.config.permittedInsecurePackages = [
+    "libsoup-2.74.3"
+  ];
+
+
   networking.hostName = "joonas-linux";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
@@ -55,13 +61,9 @@
     extraGroups = [ "networkmanager" "wheel" "kvm" "input" "disk" "libvirtd" "dialout" "docker" ];
   };
 
-  programs.ssh.startAgent = true;
-
-  virtualisation.docker.enable = true;
-  virtualisation.docker.rootless = {
-      enable = true;
-      setSocketVariable = true;
-  };
+  # Enable automatic login for the user.
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "joonas";
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -87,13 +89,14 @@
     hugo
     hunspellDicts.sv_FI
     kid3
+    keepassxc
+    ledfx
     libreoffice
     nordic
     pavucontrol
     python311
     python311Packages.pip
-    qemu
-    scream
+    openrgb
     signal-desktop
     spotify
     sweet
