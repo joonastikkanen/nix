@@ -18,5 +18,9 @@
    environment.systemPackages = with pkgs; [
     nfs-utils
     samba
+    networkmanager-openconnect
+    networkmanagerapplet
+    networkmanager-openvpn
+    networkmanager-fortisslvpn
    ];
 }
