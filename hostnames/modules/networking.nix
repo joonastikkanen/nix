@@ -18,6 +18,7 @@
    environment.systemPackages = with pkgs; [
     nfs-utils
     samba
+    openconnect
     networkmanager-openconnect
     networkmanagerapplet
     networkmanager-openvpn
