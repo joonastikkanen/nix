@@ -17,9 +17,9 @@
       ../modules/networking.nix
     ];
 
-  nixpkgs.config.permittedInsecurePackages = [
-    "libsoup-2.74.3"
-  ];
+  #nixpkgs.config.permittedInsecurePackages = [
+  #  "libsoup-2.74.3"
+  #];
 
   # Bootloader.
   # Use the systemd-boot EFI boot loader.
@@ -73,6 +73,7 @@
    environment.systemPackages = with pkgs; [
     bitwarden
     enpass
+    ente-auth
     evince
     fondo
     freetype
