@@ -1,29 +1,12 @@
 { config, pkgs, ... }:
 
 {
-    services.xserver = {
-        enable = true;
-        xkb.variant = "";
-        xkb.layout = "fi";
-
-        excludePackages = with pkgs; [
-            xterm
-        ];
-    };
-    services.displayManager = {
-        sddm = {
-            enable = true;
-            wayland.enable = true;
-        };
-        defaultSession = "plasma";
-    };
-    services.desktopManager.plasma6.enable = true;
-
-    services.libinput = {
-        enable = true;
-        # disabling mouse acceleration
-        mouse = {
-            accelProfile = "flat";
-        };
-    };
+  services.displayManager.sddm.enable = true;
+  services.displayManager.sddm.wayland.enable = true;
+  services.desktopManager.plasma6.enable = true;
+  environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    plasma-browser-integration
+    konsole
+    elisa
+  ];
 }
