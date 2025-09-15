@@ -10,7 +10,7 @@
       ../modules/common.nix
       #../modules/gnome.nix
       #../modules/kde.nix
-      ../modules/hyprland.nix
+      #../modules/hyprland.nix
       ../modules/locales.nix
       ../modules/sound.nix
       #../modules/nvidia.nix
@@ -51,6 +51,11 @@
     "libsoup-2.74.3"
   ];
 
+  # Enable the COSMIC login manager
+  services.displayManager.cosmic-greeter.enable = true;
+
+  # Enable the COSMIC desktop environment
+  services.desktopManager.cosmic.enable = true;
 
   networking.hostName = "joonas-linux";
 
