@@ -17,9 +17,9 @@
       ../modules/networking.nix
     ];
 
-  #nixpkgs.config.permittedInsecurePackages = [
-  #  "libsoup-2.74.3"
-  #];
+  nixpkgs.config.permittedInsecurePackages = [
+    "libsoup-2.74.3"
+  ];
 
   # Bootloader.
   # Use the systemd-boot EFI boot loader.
@@ -72,6 +72,7 @@
   # $ nix search wget
    environment.systemPackages = with pkgs; [
     bitwarden
+    cilium-cli
     enpass
     ente-auth
     evince
