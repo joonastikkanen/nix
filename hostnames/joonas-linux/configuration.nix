@@ -64,6 +64,9 @@
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "joonas";
 
+  # Enable flatpaks
+  services.flatpak.enable = true;
+
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
   # List packages installed in system profile. To search, run:
