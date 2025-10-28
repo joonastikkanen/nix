@@ -84,7 +84,9 @@
     gimp
     google-chrome
     gnome-firmware
+    hubble
     hunspellDicts.sv_FI
+    httpie
     keepassxc
     libreoffice
     marktext
