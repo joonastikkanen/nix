@@ -73,7 +73,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
    environment.systemPackages = with pkgs; [
-    bitwarden
+    bitwarden-desktop
     cilium-cli
     enpass
     ente-auth
@@ -100,7 +100,7 @@
     spotify
     telegram-desktop
     vlc
-    whatsapp-for-linux
+    wasistlos
     x2goclient
    ];
   system.stateVersion = "25.11"; 
