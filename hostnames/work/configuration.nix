@@ -12,7 +12,8 @@
       ../modules/locales.nix
       ../modules/laptop.nix
       ../modules/tailscale.nix
-      ../modules/gnome.nix
+      #../modules/gnome.nix
+      ../modules/cosmic.nix
       ../modules/devops.nix
       ../modules/networking.nix
     ];
@@ -86,7 +87,7 @@
     gnome-firmware
     hubble
     hunspellDicts.sv_FI
-    httpie
+    httpie-desktop
     keepassxc
     libreoffice
     marktext
