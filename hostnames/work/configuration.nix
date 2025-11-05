@@ -94,6 +94,7 @@
     netbird
     netbird-ui
     netbird-dashboard
+    orca-slicer
     pavucontrol
     signal-desktop
     slack
