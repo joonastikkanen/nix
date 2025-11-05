@@ -9,8 +9,9 @@
       ./hardware-configuration.nix
       ../modules/common.nix
       #../modules/gnome.nix
-      ../modules/kde.nix
+      #../modules/kde.nix
       #../modules/hyprland.nix
+      ../modules/cosmic.nix
       ../modules/locales.nix
       ../modules/sound.nix
       #../modules/nvidia.nix
@@ -72,7 +73,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
    environment.systemPackages = with pkgs; [
-    bitwarden
+    bitwarden-desktop
     discord
     distrobox
     flatpak
@@ -99,13 +100,14 @@
     python311
     python311Packages.pip
     openrgb
+    orca-slicer
     signal-desktop
     spotify
     sweet
     sweethome3d.application
     telegram-desktop
     terminator
-    whatsapp-for-linux
+    wasistlos
     virt-manager
     vlc
     vscode
