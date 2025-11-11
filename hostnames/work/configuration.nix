@@ -16,6 +16,7 @@
       ../modules/cosmic.nix
       ../modules/devops.nix
       ../modules/networking.nix
+      ../modules/gaming.nix
     ];
 
   nixpkgs.config.permittedInsecurePackages = [
