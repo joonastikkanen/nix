@@ -55,6 +55,7 @@
             ruby
             rubyPackages.nio4r
             screen
+            talosctl
             tfswitch
             terraform
             #vagrant
