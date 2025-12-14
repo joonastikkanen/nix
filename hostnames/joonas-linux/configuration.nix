@@ -68,8 +68,15 @@
   # Enable flatpaks
   services.flatpak.enable = true;
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    packageOverrides = pkgs: {
+      unstable = import <unstable> {
+        config = config.nixpkgs.config;
+      };
+    };
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
    environment.systemPackages = with pkgs; [
@@ -79,7 +86,7 @@
     flatpak
     fondo
     freetype
-    freecad-wayland
+    unstable.freecad-wayland
     fluent-gtk-theme
     fluent-icon-theme
     graphite-cursors
@@ -114,7 +121,7 @@
   ];
 
   system = {
-    stateVersion = "24.11";
+    stateVersion = "25.11";
   };
 
 }
