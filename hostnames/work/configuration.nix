@@ -23,6 +23,9 @@
     "libsoup-2.74.3"
   ];
 
+  programs.ssh.startAgent =  true;
+  services.gnome.gnome-keyring.enable = true;
+
   # Bootloader.
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
