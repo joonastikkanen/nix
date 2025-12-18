@@ -81,7 +81,7 @@
     evince
     fondo
     freetype
-    freecad
+    freecad-wayland
     firefox
     gimp
     google-chrome
