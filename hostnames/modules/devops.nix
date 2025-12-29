@@ -58,7 +58,7 @@
             talosctl
             tfswitch
             terraform
-            #vagrant
+            vagrant
             virt-manager
             vscode
         ];
