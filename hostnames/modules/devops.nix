@@ -33,6 +33,7 @@
             bundler
             dbeaver-bin
             gcc
+            gh
             gnumake
             google-cloud-sdk
             hugo
