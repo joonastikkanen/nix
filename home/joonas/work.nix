@@ -11,10 +11,10 @@
     };
   };
 
-  programs.git = {
+  programs.git.settings = {
     enable = true;
-    userName = "Joonas Tikkanen";
-    userEmail = "joonas.tikkanen@kinetive.fi";
+    user.name = "Joonas Tikkanen";
+    user.email = "joonas.tikkanen@kinetive.fi";
     extraConfig = {
       pull.rebase = "true";
     };
@@ -55,6 +55,8 @@
       Port 2022
     '';
   };
+
+  services.gnome-keyring.enable = true;
 
   # Enable home-manager and git
   programs.home-manager.enable = true;
