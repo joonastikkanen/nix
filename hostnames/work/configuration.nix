@@ -44,7 +44,7 @@
       #192.168.121.146 gitlab.kinetive.local registry.gitlab.kinetive.local storage.gitlab.kinetive.local 
       10.10.10.10 rancher.kinetive.local
       192.168.200.190 kinetivepi
-      192.168.236.72 argocd.rde.kalmar.one
+#      192.168.231.4 argocd.testyard.kalmar.one
     '';
   };
   # Define a user account. Don't forget to set a password with ‘passwd’.

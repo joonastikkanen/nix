@@ -3,7 +3,7 @@
 {
     security.sudo.wheelNeedsPassword = false;
     services.fwupd.enable = true;
-    services.gnome.gcr-ssh-agent.enable = false;
+    #services.gnome.gcr-ssh-agent.enable = false;
     environment.systemPackages = with pkgs; [
         curl
         dnsutils
