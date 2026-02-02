@@ -41,7 +41,18 @@
   };
 
   programs.ssh = {
-    addKeysToAgent = "yes";
+    matchBlocks."*" = { 
+      forwardAgent = true; 
+      addKeysToAgent = "yes"; 
+      compression = false; 
+      serverAliveInterval = 0; 
+      serverAliveCountMax = 3; 
+      hashKnownHosts = false; 
+      userKnownHostsFile = "~/.ssh/known_hosts"; 
+      controlMaster = "no"; 
+      controlPath = "~/.ssh/master-%r@%n:%p"; 
+      controlPersist = "no"; 
+    };
     extraConfig = ''
     Host *
       ServerAliveInterval 300
@@ -64,5 +75,5 @@
   systemd.user.startServices = "sd-switch";
 
   # https://nixos.wiki/wiki/FAQ/When_do_I_update_stateVersion
-  home.stateVersion = "23.11";
+  home.stateVersion = "26.05";
 }
