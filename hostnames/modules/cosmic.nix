@@ -17,6 +17,7 @@
   environment.systemPackages = with pkgs; [
     seahorse  # GUI for managing keys
     gnome-keyring  # Ensure gnome-keyring is available
+    system76-power
   ];
 
   # System76 scheduler

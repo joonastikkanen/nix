@@ -26,7 +26,7 @@
     environment.systemPackages = with pkgs; [
             android-tools
             ansible
-            argocd
+            #argocd
             awscli2
             distrobox
             docker-compose
