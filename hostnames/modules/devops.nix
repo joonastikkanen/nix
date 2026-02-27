@@ -49,6 +49,7 @@
             nodenv
             nodejs_24
             postman
+            podman
             openbao
             qemu
             rake

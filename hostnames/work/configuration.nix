@@ -12,11 +12,12 @@
       ../modules/locales.nix
       ../modules/laptop.nix
       ../modules/tailscale.nix
+      ../modules/kde.nix
       #../modules/gnome.nix
-      ../modules/cosmic.nix
+      #../modules/cosmic.nix
       ../modules/devops.nix
       ../modules/networking.nix
-      ../modules/gaming.nix
+      #../modules/gaming.nix
     ];
 
   nixpkgs.config.permittedInsecurePackages = [
@@ -81,7 +82,7 @@
     evince
     fondo
     freetype
-    freecad-wayland
+    #freecad
     firefox
     gimp
     google-chrome
@@ -91,7 +92,7 @@
     httpie-desktop
     keepassxc
     libreoffice
-    marktext
+    #marktext
     netbird
     netbird-ui
     netbird-dashboard
