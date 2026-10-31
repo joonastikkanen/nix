@@ -14,7 +14,7 @@
         jq
         localsend
         ncdu
-        neofetch
+        fastfetch
         nmap
         nnn
         openssl

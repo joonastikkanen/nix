@@ -2,20 +2,27 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
+
+let
+  unstable = import inputs.nixpkgs-unstable {
+    system = pkgs.stdenv.hostPlatform.system;
+    config.allowUnfree = true;
+  };
+in
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../modules/common.nix
       #../modules/gnome.nix
-      #../modules/kde.nix
+      ../modules/kde.nix
       #../modules/hyprland.nix
-      ../modules/cosmic.nix
+      #../modules/cosmic.nix
       ../modules/locales.nix
       ../modules/sound.nix
       #../modules/nvidia.nix
-      #../modules/amd-gpu.nix
+      ../modules/amd-gpu.nix
       ../modules/networking.nix
       ../modules/tailscale.nix
       ../modules/gaming.nix
@@ -24,23 +31,20 @@
   # Kernel
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Bootloader.
-  boot.loader = {
-      systemd-boot = {
-        enable = true;
-        edk2-uefi-shell.enable = true;
-        memtest86.enable = true;
-        configurationLimit = 5;
-        windows.winkkari.title = "Windows 10";
-        windows.winkkari.efiDeviceHandle = "HD1b";
-      };
-      efi.canTouchEfiVariables = true;
-  };
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
   boot.supportedFilesystems = [ "ntfs" ];
   fileSystems."/mnt/DATA" =
     { device = "/dev/disk/by-label/DATA";
       fsType = "ntfs-3g"; 
       options = [ "rw" "uid=1000" "gid=1000" ];
+    };
+
+  fileSystems."/mnt/Barracuda" =
+    { device = "/dev/disk/by-label/Barracuda";
+      fsType = "ext4";
+#      options = [ "rw" "uid=1000" "gid=1000" ];
     };
 
   #fileSystems."/mnt/TIKINAS" = {
@@ -50,9 +54,10 @@
 
   nixpkgs.config.permittedInsecurePackages = [
     "libsoup-2.74.3"
+    "electron-41.10.7"
   ];
 
-  networking.hostName = "joonas-linux";
+  networking.hostName = "linux";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.joonas = {
@@ -68,23 +73,14 @@
   # Enable flatpaks
   services.flatpak.enable = true;
 
-  nixpkgs.config = {
-    allowUnfree = true;
-    packageOverrides = pkgs: {
-      unstable = import <unstable> {
-        config = config.nixpkgs.config;
-      };
-    };
-  };
+  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
    environment.systemPackages = with pkgs; [
     bitwarden-desktop
     discord
-    distrobox
     flatpak
-    fondo
     freetype
     unstable.freecad-wayland
     fluent-gtk-theme
@@ -104,9 +100,11 @@
     libreoffice
     nordic
     pavucontrol
-    python311
-    python311Packages.pip
+    python3
+    python3Packages.pip
     openrgb
+    opencode
+    opencode-desktop
     orca-slicer
     signal-desktop
     spotify
@@ -114,14 +112,14 @@
     sweethome3d.application
     telegram-desktop
     terminator
-    wasistlos
+    karere
     virt-manager
     vlc
     vscode
   ];
 
   system = {
-    stateVersion = "25.11";
+    stateVersion = "26.05";
   };
 
 }

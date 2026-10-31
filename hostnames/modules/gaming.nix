@@ -14,7 +14,7 @@
       (lutris.override {
             extraPkgs = pkgs: [
         # List package dependencies here
-              wineWowPackages.stable
+              wineWow64Packages.stable
               winetricks
             ];
           })

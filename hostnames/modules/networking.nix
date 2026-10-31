@@ -6,9 +6,9 @@
 
     extraHosts = ''
       10.20.30.20 tikinas
-      10.20.30.30 homeassistant
-      10.20.30.40 tikiproxy
-      10.20.30.60 watermeter
+      10.20.30.55 homeassistant
+      10.20.30.46 ambwks501
+      10.20.30.60 ollama
     '';
   };
   systemd.services.NetworkManager-wait-online.enable = false;
@@ -22,6 +22,5 @@
     networkmanager-openconnect
     networkmanagerapplet
     networkmanager-openvpn
-    networkmanager-fortisslvpn
    ];
 }
