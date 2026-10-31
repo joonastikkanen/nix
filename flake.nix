@@ -38,7 +38,7 @@
     };
   in {
     nixosConfigurations = {
-      joonas-linux = nixosSystemFor "joonas-linux" ./hostnames/joonas-linux/configuration.nix;
+      linux = nixosSystemFor "linux" ./hostnames/linux/configuration.nix;
       matebook = nixosSystemFor "matebook" ./hostnames/matebook/configuration.nix;
       work = nixosSystemFor "work" ./hostnames/work/configuration.nix;
       tikinas = nixosSystemFor "tikinas" ./hostnames/tikinas/configuration.nix;
@@ -46,7 +46,7 @@
     };
 
     homeConfigurations = {
-      "joonas@joonas-linux" = home-manager.lib.homeManagerConfiguration (homeManagerFor "joonas" "joonas-linux");
+      "joonas@linux" = home-manager.lib.homeManagerConfiguration (homeManagerFor "joonas" "linux");
       "joonas@matebook" = home-manager.lib.homeManagerConfiguration (homeManagerFor "joonas" "matebook");
       "joonas@work" = home-manager.lib.homeManagerConfiguration (homeManagerFor "joonas" "work");
       "joonas@tikinas" = home-manager.lib.homeManagerConfiguration (homeManagerFor "joonas" "tikinas");

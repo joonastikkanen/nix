@@ -20,7 +20,7 @@ Flake-based NixOS and Home Manager configurations for multiple personal machines
 nix rebuild switch --flake .#<HOSTNAME>
 ```
 
-Replace `<HOSTNAME>` with your target machine (e.g., `joonas-linux`).
+Replace `<HOSTNAME>` with your target machine (e.g., `linux`).
 
 ### Applying Home Manager Changes
 
