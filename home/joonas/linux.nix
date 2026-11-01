@@ -3,6 +3,7 @@
     ../modules/git.nix
     ../modules/bash.nix
     ../modules/firefox.nix
+    ../modules/freecad-mcp.nix
     ../modules/ssh.nix
     ../modules/tmux.nix
   ];

@@ -1,7 +1,9 @@
 {...}: {
     programs.ssh = {
-        serverAliveCountMax = 5;
-        serverAliveInterval = 300;
-        forwardAgent = true;
+        settings."*" = {
+            ServerAliveCountMax = 5;
+            ServerAliveInterval = 300;
+            ForwardAgent = true;
+        };
     };
 }
