@@ -26,6 +26,7 @@ in
       ../modules/networking.nix
       ../modules/tailscale.nix
       ../modules/gaming.nix
+      ../modules/snapmaker-orca.nix
     ];
 
   # Kernel
@@ -70,9 +71,6 @@ in
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "joonas";
 
-  # Enable flatpaks
-  services.flatpak.enable = true;
-
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search, run:
@@ -105,7 +103,6 @@ in
     openrgb
     opencode
     opencode-desktop
-    orca-slicer
     signal-desktop
     spotify
     sweet

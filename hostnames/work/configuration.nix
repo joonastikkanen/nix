@@ -17,6 +17,7 @@
       #../modules/cosmic.nix
       ../modules/devops.nix
       ../modules/networking.nix
+      ../modules/snapmaker-orca.nix
       #../modules/gaming.nix
     ];
 
@@ -54,8 +55,6 @@
     description = "Joonas Tikkanen";
     extraGroups = [ "networkmanager" "wheel" "kvm" "input" "disk" "libvirtd" "docker" "dialout"];
   };
-
-  services.flatpak.enable = true;
 
  services.netbird = {
     enable = true;
@@ -96,7 +95,6 @@
     netbird
     netbird-ui
     netbird-dashboard
-    orca-slicer
     pavucontrol
     signal-desktop
     slack
