@@ -1,9 +1,6 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 let
-  unstable = import
-    (builtins.fetchTarball https://github.com/nixos/nixpkgs/tarball/nixos-unstable)
-    # reuse the current configuration
-    { config = config.nixpkgs.config; };
+  release = inputs.nixpkgs-26-05.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 in
 {
   imports =
@@ -180,7 +177,7 @@ in
     git
     htop
     jq
-    neofetch
+    fastfetch
     nfs-utils
     netdata
     openssl
@@ -196,8 +193,8 @@ in
     vscode
     wget
     yq
-    unstable.cloudflared
-    python311Packages.zigpy
+    release.cloudflared
+    python312Packages.zigpy
     python311Packages.pip
     python311Packages.virtualenv
   ];

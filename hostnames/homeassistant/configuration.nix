@@ -85,12 +85,12 @@
     curl
     docker-compose
     git
-    python311Packages.zigpy
+    python312Packages.zigpy
     python311Packages.pip
     python311Packages.virtualenv
     htop
     jq
-    neofetch
+    fastfetch
     nfs-utils
     netdata
     openssl

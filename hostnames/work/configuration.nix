@@ -101,7 +101,7 @@
     spotify
     telegram-desktop
     vlc
-    wasistlos
+    karere
     x2goclient
    ];
   system.stateVersion = "25.11"; 

@@ -22,6 +22,8 @@
   # Enable home-manager and git
   programs.home-manager.enable = true;
 
+  programs.firefox.configPath = ".mozilla/firefox";
+
 #  home.file = { "/home/joonas/.cloudflared/config.yaml" = { 
 #    text = '''
 #      tunnel: 1e9e73df-93b3-444a-ba1f-74a62b11f36a

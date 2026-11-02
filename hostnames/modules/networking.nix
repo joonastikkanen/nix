@@ -9,6 +9,7 @@
       10.20.30.55 homeassistant
       10.20.30.46 ambwks501
       10.20.30.60 ollama
+      212.147.249.78 headscale
     '';
   };
   systemd.services.NetworkManager-wait-online.enable = false;

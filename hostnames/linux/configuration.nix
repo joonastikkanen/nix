@@ -5,6 +5,10 @@
 { config, pkgs, lib, inputs, ... }:
 
 let
+  release = import inputs.nixpkgs-26-05 {
+    system = pkgs.stdenv.hostPlatform.system;
+    config.allowUnfree = true;
+  };
   unstable = import inputs.nixpkgs-unstable {
     system = pkgs.stdenv.hostPlatform.system;
     config.allowUnfree = true;
@@ -61,8 +65,10 @@ in
   networking.hostName = "linux";
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  programs.zsh.enable = true;
   users.users.joonas = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     description = "Joonas Tikkanen";
     extraGroups = [ "networkmanager" "wheel" "kvm" "input" "disk" "libvirtd" "dialout" "docker" ];
   };
@@ -76,11 +82,13 @@ in
   # List packages installed in system profile. To search, run:
   # $ nix search wget
    environment.systemPackages = with pkgs; [
+    ansible
     bitwarden-desktop
     discord
+    ente-auth
     flatpak
     freetype
-    unstable.freecad-wayland
+    release.freecad-wayland
     fluent-gtk-theme
     fluent-icon-theme
     graphite-cursors
@@ -94,6 +102,9 @@ in
     hunspellDicts.sv_FI
     kid3
     keepassxc
+    kubectl
+    kubernetes-helm
+    kustomize
     ledfx
     libreoffice
     nordic
@@ -101,8 +112,8 @@ in
     python3
     python3Packages.pip
     openrgb
-    opencode
-    opencode-desktop
+    unstable.opencode
+    unstable.opencode-desktop
     signal-desktop
     spotify
     sweet

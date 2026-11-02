@@ -10,6 +10,7 @@
         dnsutils
         file
         git
+        go-task
         htop
         inetutils
         jq

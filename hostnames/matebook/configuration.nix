@@ -69,7 +69,7 @@
     curl
     vim
     wget
-    neofetch
+    fastfetch
     discord
     enpass
     flatpak
@@ -93,14 +93,13 @@
     spotify
     steam
     steam-run
-    teamspeak_client
     telegram-desktop
     unzip
     vagrant
     vlc
     vscode
     vulkan-tools
-    whatsapp-for-linux
+    karere
     lutris
     (lutris.override {
           extraPkgs = pkgs: [
@@ -114,4 +113,3 @@
   system.stateVersion = "23.05"; # Did you read the comment?
 
 }
-

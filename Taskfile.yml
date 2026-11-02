@@ -1,0 +1,38 @@
+version: '3'
+
+vars:
+  HOST:
+    sh: hostname
+  USER_NAME:
+    sh: id -un
+
+tasks:
+  default:
+    desc: List available tasks
+    cmds:
+      - task --list
+
+  check:
+    desc: Evaluate and check the flake without building
+    cmds:
+      - nix flake check --no-build path:.
+
+  build:
+    desc: Build the NixOS configuration (HOST defaults to this machine)
+    cmds:
+      - nixos-rebuild build --flake 'path:.#{{.HOST}}'
+
+  switch:
+    desc: Build and activate the NixOS configuration
+    cmds:
+      - sudo nixos-rebuild switch --flake 'path:.#{{.HOST}}'
+
+  home:
+    desc: Build and activate Home Manager (USER_NAME and HOST default to this user and machine)
+    cmds:
+      - home-manager switch --flake 'path:.#{{.USER_NAME}}@{{.HOST}}'
+
+  update:
+    desc: Update flake.lock (does not activate changes)
+    cmds:
+      - nix flake update

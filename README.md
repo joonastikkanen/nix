@@ -14,6 +14,25 @@ Flake-based NixOS and Home Manager configurations for multiple personal machines
 
 ## Quick Start
 
+### Task Runner
+
+The shared system packages include Task (`go-task`, providing the `task` binary).
+From this repository:
+
+```bash
+task                  # List available tasks
+task check            # Check the flake without building
+task build            # Build this machine's NixOS configuration
+task switch           # Apply this machine's NixOS configuration (sudo)
+task home             # Apply this user's Home Manager configuration
+task update           # Update flake.lock without activating changes
+task build HOST=matebook
+task home HOST=matebook USER_NAME=joonas
+```
+
+Tasks use `path:.` to include new, untracked configuration files. Review your
+working-tree changes before running `task switch` or `task home`.
+
 ### Building a NixOS Configuration
 
 ```bash
