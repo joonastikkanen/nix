@@ -12,7 +12,13 @@
     };
     oh-my-zsh = {
       enable = true;
-      plugins = ["git"];
+      plugins = [
+        "argocd"
+        "git"
+        "helm"
+        "kubectl"
+        "sudo"
+      ];
       theme = "";
     };
     plugins = [
