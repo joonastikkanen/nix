@@ -33,6 +33,35 @@ task home HOST=matebook USER_NAME=joonas
 Tasks use `path:.` to include new, untracked configuration files. Review your
 working-tree changes before running `task switch` or `task home`.
 
+### GNOME desktop (`linux`)
+
+The `linux` host uses GNOME on Wayland with GDM and automatic login. Its Home
+Manager profile configures a dark appearance, an intelligent bottom dock,
+tray icons (including Nextcloud), and **Ctrl+Alt+T** for GNOME Console. New
+terminals use Zsh with Oh My Zsh, Powerlevel10k, suggestions, syntax highlighting,
+and history search with the arrow keys.
+
+GNOME hosts use the GCR SSH agent and GNOME Keyring. The agent socket is
+`$XDG_RUNTIME_DIR/gcr/ssh`; inherited SSH-forwarded sockets are preserved.
+The `linux` Home Manager profile selects the existing `.sshkey` identity and
+links its public key under the matching `.sshkey.pub` name so GCR can discover
+it automatically. Private keys remain in `~/.ssh`, outside the Nix store.
+
+Automatic login cannot unlock a password-protected login keyring by itself.
+Unlock it when prompted on first use; SSH key passphrases can be remembered in
+the keyring. **Passwords and Keys** (Seahorse) manages the keyring.
+
+When changing desktop environments, prepare the system for the next boot and
+apply the user settings, then reboot when ready:
+
+```bash
+sudo nixos-rebuild boot --flake path:.#linux
+task home HOST=linux
+```
+
+After logging into GNOME, check `echo "$SSH_AUTH_SOCK"`, `ssh-add -l`, and
+`systemctl --user status gcr-ssh-agent.socket gcr-ssh-agent.service`.
+
 ### Building a NixOS Configuration
 
 ```bash

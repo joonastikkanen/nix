@@ -1,10 +1,10 @@
-{ config, pkgs, ... }:
+{ config, lib, pkgs, ... }:
 
 {
     security.sudo.wheelNeedsPassword = false;
     services.fwupd.enable = true;
-    services.gnome.gcr-ssh-agent.enable = false;
-    programs.ssh.startAgent = true;
+    services.gnome.gcr-ssh-agent.enable = lib.mkDefault false;
+    programs.ssh.startAgent = lib.mkDefault true;
     environment.systemPackages = with pkgs; [
         curl
         dnsutils

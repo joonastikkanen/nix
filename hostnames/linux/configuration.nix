@@ -19,8 +19,8 @@ in
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
       ../modules/common.nix
-      #../modules/gnome.nix
-      ../modules/kde.nix
+      ../modules/gnome.nix
+      #../modules/kde.nix
       #../modules/hyprland.nix
       #../modules/cosmic.nix
       ../modules/locales.nix
@@ -76,6 +76,7 @@ in
   # Enable automatic login for the user.
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "joonas";
+  services.displayManager.defaultSession = "gnome";
 
   nixpkgs.config.allowUnfree = true;
 

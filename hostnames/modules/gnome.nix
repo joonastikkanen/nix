@@ -4,7 +4,20 @@
     services = {
         displayManager.gdm.enable = true;
         desktopManager.gnome.enable = true;
+        gnome.gnome-keyring.enable = true;
+        gnome.gcr-ssh-agent.enable = true;
     };
+
+    # GCR integrates SSH passphrases with GNOME Keyring and its graphical prompts.
+    programs.ssh.startAgent = false;
+    programs.seahorse.enable = true;
+    environment.sessionVariables.TERMINAL = "kgx";
+    environment.extraInit = ''
+        # Keep forwarded agents when logging in over SSH.
+        if [ -z "$SSH_AUTH_SOCK" ] && [ -n "$XDG_RUNTIME_DIR" ]; then
+            export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gcr/ssh"
+        fi
+    '';
     services.xserver = {
         enable = true;
         xkb.variant = "";
