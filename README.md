@@ -36,8 +36,10 @@ working-tree changes before running `task switch` or `task home`.
 ### GNOME desktop (`linux`)
 
 The `linux` host uses GNOME on Wayland with GDM and automatic login. Its Home
-Manager profile configures a dark appearance, an intelligent bottom dock,
-tray icons (including Nextcloud), and **Ctrl+Alt+T** for GNOME Console. New
+Manager profile configures an Ubuntu-inspired dark desktop with Yaru themes,
+icons and cursors, Ubuntu fonts, a purple wallpaper, the GNOME top bar, and an
+always-visible left dock (Dash to Dock). It includes tray icons (including
+Nextcloud) and **Ctrl+Alt+T** for GNOME Console. New
 terminals use Zsh with Oh My Zsh, Powerlevel10k, suggestions, syntax highlighting,
 and history search with the arrow keys.
 
