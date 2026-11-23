@@ -36,3 +36,9 @@ tasks:
     desc: Update flake.lock (does not activate changes)
     cmds:
       - nix flake update
+
+  upgrade:
+    desc: Update flake.lock, then build and activate the NixOS configuration
+    cmds:
+      - task: update
+      - task: switch
